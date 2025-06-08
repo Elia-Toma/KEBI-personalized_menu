@@ -1,0 +1,4 @@
+# If an ingredient is allergenic to a certain Allergen, then the Meal containing it is NOT compatible with that profile.
+
+Meal(?m) ^ hasIngredient(?m, ?i) ^ hasAllergen(?i, ?all)
+  -> MealNotCompatibleWithAllergen(?m, ?all)
