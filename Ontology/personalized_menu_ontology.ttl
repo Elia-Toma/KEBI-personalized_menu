@@ -1,0 +1,335 @@
+@prefix : <http://example.org/menu#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://example.org/menu#> .
+
+<http://example.org/menu> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://example.org/menu#hasAllergen
+:hasAllergen rdf:type owl:ObjectProperty ;
+             rdfs:domain :Ingredient ;
+             rdfs:range :Allergen .
+
+
+###  http://example.org/menu#hasIngredient
+:hasIngredient rdf:type owl:ObjectProperty ;
+               rdfs:domain :Meal ;
+               rdfs:range :Ingredient .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://example.org/menu#calories
+:calories rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Ingredient ;
+          rdfs:range xsd:integer .
+
+
+###  http://example.org/menu#category
+:category rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Ingredient ;
+          rdfs:range xsd:string .
+
+
+###  http://example.org/menu#totalCalories
+:totalCalories rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Meal ;
+               rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://example.org/menu#Allergen
+:Allergen rdf:type owl:Class .
+
+
+###  http://example.org/menu#CalorieConscious
+:CalorieConscious rdf:type owl:Class ;
+                  rdfs:subClassOf :Profile .
+
+
+###  http://example.org/menu#Carnivore
+:Carnivore rdf:type owl:Class ;
+           rdfs:subClassOf :Profile .
+
+
+###  http://example.org/menu#Ingredient
+:Ingredient rdf:type owl:Class .
+
+
+###  http://example.org/menu#Meal
+:Meal rdf:type owl:Class .
+
+
+###  http://example.org/menu#NoGluten
+:NoGluten rdf:type owl:Class ;
+          rdfs:subClassOf :Profile .
+
+
+###  http://example.org/menu#NoLactose
+:NoLactose rdf:type owl:Class ;
+           rdfs:subClassOf :Profile .
+
+
+###  http://example.org/menu#NoSeafood
+:NoSeafood rdf:type owl:Class ;
+           rdfs:subClassOf :Profile .
+
+
+###  http://example.org/menu#Profile
+:Profile rdf:type owl:Class .
+
+
+###  http://example.org/menu#Vegetarian
+:Vegetarian rdf:type owl:Class ;
+            rdfs:subClassOf :Profile .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://example.org/menu#bacon
+:bacon rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :hasAllergen :meat ;
+       :calories 300 ;
+       :category "meat" .
+
+
+###  http://example.org/menu#basil
+:basil rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :calories 5 ;
+       :category "vegetable" .
+
+
+###  http://example.org/menu#beef
+:beef rdf:type owl:NamedIndividual ,
+               :Ingredient ;
+      :hasAllergen :meat ;
+      :calories 250 ;
+      :category "meat" .
+
+
+###  http://example.org/menu#beef_steak
+:beef_steak rdf:type owl:NamedIndividual ,
+                     :Meal ;
+            :hasIngredient :beef ,
+                           :olive_oil ;
+            :totalCalories 370 .
+
+
+###  http://example.org/menu#carbonara
+:carbonara rdf:type owl:NamedIndividual ,
+                    :Meal ;
+           :hasIngredient :bacon ,
+                          :cream ,
+                          :egg ,
+                          :parmesan ,
+                          :spaghetti ;
+           :totalCalories 1090 .
+
+
+###  http://example.org/menu#chicken
+:chicken rdf:type owl:NamedIndividual ,
+                  :Ingredient ;
+         :hasAllergen :meat ;
+         :calories 200 ;
+         :category "meat" .
+
+
+###  http://example.org/menu#clams
+:clams rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :hasAllergen :seafood ;
+       :calories 180 ;
+       :category "seafood" .
+
+
+###  http://example.org/menu#cream
+:cream rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :hasAllergen :lactose ;
+       :calories 250 ;
+       :category "dairy" .
+
+
+###  http://example.org/menu#egg
+:egg rdf:type owl:NamedIndividual ,
+              :Ingredient ;
+     :hasAllergen :eggAllergen ;
+     :calories 70 ;
+     :category "protein" .
+
+
+###  http://example.org/menu#eggAllergen
+:eggAllergen rdf:type owl:NamedIndividual ,
+                      :Allergen .
+
+
+###  http://example.org/menu#gluten
+:gluten rdf:type owl:NamedIndividual ,
+                 :Allergen .
+
+
+###  http://example.org/menu#grilled_chicken
+:grilled_chicken rdf:type owl:NamedIndividual ,
+                          :Meal ;
+                 :hasIngredient :chicken ,
+                                :olive_oil ;
+                 :totalCalories 320 .
+
+
+###  http://example.org/menu#lactose
+:lactose rdf:type owl:NamedIndividual ,
+                  :Allergen .
+
+
+###  http://example.org/menu#meat
+:meat rdf:type owl:NamedIndividual ,
+               :Allergen .
+
+
+###  http://example.org/menu#mixed_salad
+:mixed_salad rdf:type owl:NamedIndividual ,
+                      :Meal ;
+             :hasIngredient :basil ,
+                            :olive_oil ,
+                            :tomato ,
+                            :zucchini ;
+             :totalCalories 160 .
+
+
+###  http://example.org/menu#mozzarella
+:mozzarella rdf:type owl:NamedIndividual ,
+                     :Ingredient ;
+            :hasAllergen :lactose ;
+            :calories 150 ;
+            :category "dairy" .
+
+
+###  http://example.org/menu#mushrooms
+:mushrooms rdf:type owl:NamedIndividual ,
+                    :Ingredient ;
+           :calories 25 ;
+           :category "vegetable" .
+
+
+###  http://example.org/menu#olive_oil
+:olive_oil rdf:type owl:NamedIndividual ,
+                    :Ingredient ;
+           :calories 120 ;
+           :category "fat" .
+
+
+###  http://example.org/menu#parmesan
+:parmesan rdf:type owl:NamedIndividual ,
+                   :Ingredient ;
+          :hasAllergen :lactose ;
+          :calories 120 ;
+          :category "dairy" .
+
+
+###  http://example.org/menu#penne
+:penne rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :hasAllergen :gluten ;
+       :calories 360 ;
+       :category "gluten" .
+
+
+###  http://example.org/menu#pizza_margherita
+:pizza_margherita rdf:type owl:NamedIndividual ,
+                           :Meal ;
+                  :hasIngredient :basil ,
+                                 :mozzarella ,
+                                 :olive_oil ,
+                                 :tomato ;
+                  :totalCalories 295 .
+
+
+###  http://example.org/menu#rice
+:rice rdf:type owl:NamedIndividual ,
+               :Ingredient ;
+      :calories 330 ;
+      :category "grain" .
+
+
+###  http://example.org/menu#seafood
+:seafood rdf:type owl:NamedIndividual ,
+                  :Allergen .
+
+
+###  http://example.org/menu#shrimp
+:shrimp rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :hasAllergen :seafood ;
+        :calories 150 ;
+        :category "seafood" .
+
+
+###  http://example.org/menu#shrimp_risotto
+:shrimp_risotto rdf:type owl:NamedIndividual ,
+                         :Meal ;
+                :hasIngredient :olive_oil ,
+                               :parmesan ,
+                               :rice ,
+                               :shrimp ;
+                :totalCalories 960 .
+
+
+###  http://example.org/menu#spaghetti
+:spaghetti rdf:type owl:NamedIndividual ,
+                    :Ingredient ;
+           :hasAllergen :gluten ;
+           :calories 350 ;
+           :category "gluten" .
+
+
+###  http://example.org/menu#spaghetti_alle_vongole
+:spaghetti_alle_vongole rdf:type owl:NamedIndividual ,
+                                 :Meal ;
+                        :hasIngredient :clams ,
+                                       :olive_oil ,
+                                       :spaghetti ;
+                        :totalCalories 530 .
+
+
+###  http://example.org/menu#tomato
+:tomato rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :calories 20 ;
+        :category "vegetable" .
+
+
+###  http://example.org/menu#vegetarian_pasta
+:vegetarian_pasta rdf:type owl:NamedIndividual ,
+                           :Meal ;
+                  :hasIngredient :mushrooms ,
+                                 :olive_oil ,
+                                 :penne ,
+                                 :tomato ,
+                                 :zucchini ;
+                  :totalCalories 915 .
+
+
+###  http://example.org/menu#zucchini
+:zucchini rdf:type owl:NamedIndividual ,
+                   :Ingredient ;
+          :calories 15 ;
+          :category "vegetable" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
