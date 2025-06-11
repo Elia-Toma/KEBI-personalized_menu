@@ -1,67 +1,131 @@
-# 1. What ingredients does each dish have? (step-by-step navigation)
-
+# Retrieve Ingredients and Calories
 PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?meal ?ing WHERE {
-  ?meal a :Meal .
-  ?meal :hasIngredient ?ing .
+SELECT ?ingredient ?calories 
+WHERE {
+    ?ingredient rdf:type :Ingredient ;
+        :calories ?calories .
 }
 
----
-
-# 2. Which dishes contain at least one “dairy” ingredient?
-
+# Retrieve the Total Calories of a Meal
 PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?meal ?totalCalories 
+WHERE {
+    ?meal rdf:type :Meal ;
+        :totalCalories ?totalCalories .
+}
+
+# Retrieve Calorie-Conscious Meals
+PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?meal ?totalCalories WHERE {
+    ?meal rdf:type :Meal ;
+        :totalCalories ?totalCalories .
+  FILTER (?totalCalories <= 600)
+}
+
+# Retrieve Vegetarian Meals
+PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT DISTINCT ?meal WHERE {
-  ?meal :hasIngredient ?ing .
-  ?ingredient :category ?cat .
-  FILTER (?cat = "dairy")
+  ?meal rdf:type :Meal .
+  
+  FILTER NOT EXISTS {
+    ?meal :hasIngredient ?ingredient .
+    ?ingredient :category ?category .
+    FILTER (?category = :meat || ?category = :seafood)
+  }
 }
 
----
 
-# 3. Dish → ingredient → allergen (path 2-step)
+# Retrieve Lactose Free Meals
+PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
+SELECT DISTINCT ?meal WHERE {
+  ?meal rdf:type :Meal ;
+  FILTER NOT EXISTS {
+    ?meal :hasIngredient ?ingredient .
+    ?ingredient :hasAllergen :lactose .
+  }
+}
+
+
+# Retrieve Gluten Free Meals
+PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?meal WHERE {
+  ?meal rdf:type :Meal ;
+  FILTER NOT EXISTS {
+    ?meal :hasIngredient ?ingredient .
+    ?ingredient :hasAllergen :gluten_allergen .
+  }
+}
+
+# Retrieve Calorie-Conscious and Vegetarian Meals
+PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?meal ?totalCalories WHERE {
+  ?meal rdf:type :Meal ;
+        :totalCalories ?totalCalories .
+  
+  FILTER (?totalCalories <= 400)
+
+  FILTER NOT EXISTS {
+    ?meal :hasIngredient ?ingredient .
+    ?ingredient :category ?category .
+    FILTER (?category = :meat || ?category = :seafood)
+  }
+}
+
+# Retrieve Gluten and Lactose Free Meals
+PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?meal WHERE {
+  ?meal rdf:type :Meal ;
+
+  FILTER NOT EXISTS {
+    ?meal :hasIngredient ?ingredient1 .
+    ?ingredient1 :hasAllergen :gluten_allergen .
+  }
+
+  FILTER NOT EXISTS {
+    ?meal :hasIngredient ?ingredient2 .
+    ?ingredient2 :hasAllergen :lactose .
+  }
+}
+
+# What ingredients does each dish have?
+PREFIX : <http://example.org/menu#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?meal ?ingredient WHERE {
+  ?meal rdf:type :Meal .
+  ?meal :hasIngredient ?ingredient .
+}
+
+# Which dishes contain at least one “dairy” ingredient?
 PREFIX : <http://example.org/menu#>
 
-SELECT DISTINCT ?meal ?all WHERE {
-  ?meal :hasIngredient ?ing .
-  ?ing :hasAllergen ?all .
-}
-
----
-
-# 4. “Light” dish: less than 500 calories (filter on data-property)
-
-PREFIX : <http://example.org/menu#>
-
-SELECT ?meal ?cals WHERE {
-  ?meal :totalCalories ?cals .
-  FILTER (?cals <= 500)
-}
-
----
-
-# 5. Extract subgraph of “hasIngredient” (CONSTRUCT)
-
-PREFIX : <http://example.org/menu#>
-
-CONSTRUCT {
-  ?meal :hasIngredient ?ing .
-}
+SELECT DISTINCT ?meal 
 WHERE {
-  ?meal :hasIngredient ?ing .
+    ?meal :hasIngredient ?ingredient .
+    ?ingredient :category ?category .
+    FILTER (?category = "dairy")
 }
-
----
-
-# 6. Retrieve any additional properties of an ingredient (OPTIONAL)
 
 PREFIX : <http://example.org/menu#>
 
-SELECT ?ing ?allergen ?cals WHERE {
-  ?ing a :Ingredient .
-  OPTIONAL { ?ing :hasAllergen ?allergen }
-  OPTIONAL { ?ing :calories ?cals }
+SELECT DISTINCT ?meal ?all 
+WHERE {
+    ?meal :hasIngredient ?ingredient .
+    ?ingredient :hasAllergen ?all .
 }
