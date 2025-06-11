@@ -40,16 +40,18 @@ allergen(cream,      lactose).
 allergen(clams,      seafood).
 allergen(shrimp,     seafood).
 
-% --- Calorie computation
+% --- Calorie computation: 
+% calculate_ingredients_calories(IngredientList, TotalCalories)
 calculate_ingredients_calories([], 0).
-calculate_ingredients_calories([I|T], Total) :-
-    ingredient(I, _, C),
-    calculate_ingredients_calories(T, Rest),
-    Total is C + Rest.
+calculate_ingredients_calories([Ingredient|RestOfIngredients], TotalCalories) :-
+    ingredient(Ingredient, _, Calories), % get calories for current ingredient
+    calculate_ingredients_calories(RestOfIngredients, RestCalories),
+    TotalCalories is Calories + RestCalories.
 
-meal_calories(Meal, Total) :-
-    meal(Meal, Ing),
-    calculate_ingredients_calories(Ing, Total).
+% meal_calories(Meal, Calories)
+meal_calories(Meal, TotalCalories) :-
+    meal(Meal, Ingredients),
+    calculate_ingredients_calories(Ingredients, TotalCalories).
 
 % --- Predicate member/2
 member(X, [X|_]).
@@ -57,51 +59,54 @@ member(X, [_|T]) :- member(X, T).
 
 % --- Vegetarian: there must be no meat or seafood ingredients
 is_vegetarian(Meal) :-
-    meal(Meal, Ing),
-    \+ ( member(I, Ing), ingredient(I, meat, _) ),
-    \+ ( member(I, Ing), ingredient(I, seafood, _) ).
+    meal(Meal, Ingredients),
+    \+ ( member(I, Ingredients), ingredient(I, meat, _) ),
+    \+ ( member(I, Ingredients), ingredient(I, seafood, _) ).
 
-% --- Carnivore: for simplicity's sake, anyone who eats meat or fish
-is_carnivore(Meal) :-
-    meal(Meal, Ing),
-    member(I, Ing),
-    ingredient(I, meat, _).
-is_carnivore(Meal) :-
-    meal(Meal, Ing),
-    member(I, Ing),
-    ingredient(I, seafood, _).
+% --- Carnivore: for simplicity's sake, anyone who eats anything
+% is_carnivore(Meal) :-
+%    meal(Meal, Ing),
+%    member(I, Ing),
+%    ingredient(I, meat, _).
+% is_carnivore(Meal) :-
+%    meal(Meal, Ing),
+%    member(I, Ing),
+%    ingredient(I, seafood, _).
+
+is_carnivore(Meal) :- meal(Meal, _).
 
 % --- Calorie conscious: calories <= Threshold
-is_calorie_conscious(Meal, Thr) :-
-    meal_calories(Meal, C),
-    C =< Thr.
+is_calorie_conscious(Meal, Threshold) :-
+    meal_calories(Meal, Calories),
+    Calories =< Threshold.
 
 % --- Has allergen
-has_allergen(Meal, A) :-
-    meal(Meal, Ing),
-    member(I, Ing),
-    allergen(I, A).
+has_allergen(Meal, Allergy) :-
+    meal(Meal, Ingredients),
+    member(I, Ingredients),
+    allergen(I, Allergy).
 
 % --- fits: associate a profile with a meal
 fits(vegetarian, Meal)            :- is_vegetarian(Meal).
 fits(carnivore, Meal)             :- is_carnivore(Meal).
-fits(calorie_conscious(Thr), Meal):- is_calorie_conscious(Meal, Thr).
+fits(calorie_conscious(Threshold), Meal):- is_calorie_conscious(Meal, Threshold).
 fits(no_lactose, Meal)            :- \+ has_allergen(Meal, lactose).
 fits(no_gluten, Meal)             :- \+ has_allergen(Meal, gluten).
 fits(no_seafood, Meal)            :- \+ has_allergen(Meal, seafood).
 
 % --- Recommend a meal for a single profile
 recommend_meal(Profile, Meal) :-
-    \+ (Profile = [_|_]),  % non è una lista
+    \+ (Profile = [_|_]),  % is not a list
     fits(Profile, Meal).
 
 % --- Recommend a meal for multiple profiles (list)
 recommend_meal([P|Ps], Meal) :-
     fits(P, Meal),
     recommend_meal(Ps, Meal).
+
 recommend_meal([], _).  % base case
 
 % --- Query examples:
-% ?- recommend_meal([vegetarian, calorie_conscious(200)], M).
-% ?- meal_calories(pizza_margherita, C).
+% ?- recommend_meal([vegetarian, calorie_conscious(600)], Meal).
+% ?- meal_calories(pizza_margherita, Calories).
 % ?- fits(no_gluten, spaghetti_alle_vongole).
