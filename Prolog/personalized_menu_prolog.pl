@@ -64,15 +64,6 @@ is_vegetarian(Meal) :-
     \+ ( member(I, Ingredients), ingredient(I, seafood, _) ).
 
 % --- Carnivore: for simplicity's sake, anyone who eats anything
-% is_carnivore(Meal) :-
-%    meal(Meal, Ing),
-%    member(I, Ing),
-%    ingredient(I, meat, _).
-% is_carnivore(Meal) :-
-%    meal(Meal, Ing),
-%    member(I, Ing),
-%    ingredient(I, seafood, _).
-
 is_carnivore(Meal) :- meal(Meal, _).
 
 % --- Calorie conscious: calories <= Threshold
