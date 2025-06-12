@@ -20,28 +20,28 @@
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#hasProfile
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/hasIngredient
+:hasIngredient rdf:type owl:ObjectProperty ;
+               rdfs:domain :Meal ;
+               rdfs:range :Ingredient .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/hasProfile
 :hasProfile rdf:type owl:ObjectProperty ;
             rdfs:domain :Guest ;
             rdfs:range :GuestProfile .
 
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#ingredientNotCompatibleWithGuestFoodTypePreference
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/ingredientNotCompatibleWithGuestFoodTypePreference
 :ingredientNotCompatibleWithGuestFoodTypePreference rdf:type owl:ObjectProperty ;
                                                     rdfs:domain :Ingredient ;
                                                     rdfs:range :GuestFoodTypePreference .
 
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#mealNotCompatibleWithGuestProfile
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/mealNotCompatibleWithGuestProfile
 :mealNotCompatibleWithGuestProfile rdf:type owl:ObjectProperty ;
                                    rdfs:domain :Meal ;
                                    rdfs:range :GuestProfile .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/hasIngredient
-:hasIngredient rdf:type owl:ObjectProperty ;
-               rdfs:domain :Meal ;
-               rdfs:range :Ingredient .
 
 
 #################################################################
@@ -56,26 +56,25 @@
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/mealHasCalories
 :mealHasCalories rdf:type owl:DatatypeProperty ;
-                 rdfs:domain :Meal ;
-                 rdfs:range xsd:integer .
+                 rdfs:domain :Meal .
 
 
 #################################################################
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#GuestCaloriesPreference
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/Guest
+:Guest rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/GuestCaloriesPreference
 :GuestCaloriesPreference rdf:type owl:Class ;
                          rdfs:subClassOf :GuestProfile .
 
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#GuestFoodTypePreference
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/GuestFoodTypePreference
 :GuestFoodTypePreference rdf:type owl:Class ;
                          rdfs:subClassOf :GuestProfile .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/Guest
-:Guest rdf:type owl:Class .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/GuestProfile
@@ -94,13 +93,13 @@
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#Elia
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/Elia
 :Elia rdf:type owl:NamedIndividual ,
                :Guest ;
       :hasProfile :vegetarian .
 
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#Sofia
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/Sofia
 :Sofia rdf:type owl:NamedIndividual ,
                 :Guest ;
        :hasProfile :calorie_conscious .
@@ -130,13 +129,13 @@
 :beef_steak rdf:type owl:NamedIndividual ,
                      :Meal ;
             :hasIngredient :beef ,
-                           :olive_oil .
+                           :olive_oil ;
+            :mealHasCalories 370 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/calorie_conscious
 :calorie_conscious rdf:type owl:NamedIndividual ,
-                            :GuestCaloriesPreference ,
-                            :GuestProfile .
+                            :GuestCaloriesPreference .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/carbonara
@@ -146,7 +145,8 @@
                           :cream ,
                           :egg ,
                           :parmesan ,
-                          :spaghetti .
+                          :spaghetti ;
+           :mealHasCalories 1090 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/chicken
@@ -178,21 +178,20 @@
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/gluten_intolerant
 :gluten_intolerant rdf:type owl:NamedIndividual ,
-                            :GuestFoodTypePreference ,
-                            :GuestProfile .
+                            :GuestFoodTypePreference .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/grilled_chicken
 :grilled_chicken rdf:type owl:NamedIndividual ,
                           :Meal ;
                  :hasIngredient :chicken ,
-                                :olive_oil .
+                                :olive_oil ;
+                 :mealHasCalories 320 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/lactose_intolerant
 :lactose_intolerant rdf:type owl:NamedIndividual ,
-                             :GuestFoodTypePreference ,
-                             :GuestProfile .
+                             :GuestFoodTypePreference .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/mixed_salad
@@ -201,7 +200,8 @@
              :hasIngredient :basil ,
                             :olive_oil ,
                             :tomato ,
-                            :zucchini .
+                            :zucchini ;
+             :mealHasCalories 160 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/mozzarella
@@ -243,7 +243,8 @@
                   :hasIngredient :basil ,
                                  :mozzarella ,
                                  :olive_oil ,
-                                 :tomato .
+                                 :tomato ;
+                  :mealHasCalories 295 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/rice
@@ -265,7 +266,8 @@
                 :hasIngredient :olive_oil ,
                                :parmesan ,
                                :rice ,
-                               :shrimp .
+                               :shrimp ;
+                :mealHasCalories 720 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/spaghetti
@@ -280,7 +282,8 @@
                                  :Meal ;
                         :hasIngredient :clams ,
                                        :olive_oil ,
-                                       :spaghetti .
+                                       :spaghetti ;
+                        :mealHasCalories 650 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/tomato
@@ -291,8 +294,7 @@
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/vegetarian
 :vegetarian rdf:type owl:NamedIndividual ,
-                     :GuestFoodTypePreference ,
-                     :GuestProfile .
+                     :GuestFoodTypePreference .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/vegetarian_pasta
@@ -302,7 +304,8 @@
                                  :olive_oil ,
                                  :penne ,
                                  :tomato ,
-                                 :zucchini .
+                                 :zucchini ;
+                  :mealHasCalories 540 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/zucchini
@@ -317,9 +320,66 @@
 
 :m rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
+:cal rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+:g rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
 :i rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :p rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "This rule infers that a meal is not compatible with the \"calorie conscious\" guest profile when the total calories of the meal exceed 600 kcal." ;
+   rdfs:label "CalorieConsciousMealExceedsLimitRule" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Meal ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :m
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> :mealHasCalories ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> :cal
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#BuiltinAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#builtin> <http://www.w3.org/2003/11/swrlb#greaterThan> ;
+                                                                             <http://www.w3.org/2003/11/swrl#arguments> [ rdf:type rdf:List ;
+                                                                                                                          rdf:first :cal ;
+                                                                                                                          rdf:rest [ rdf:type rdf:List ;
+                                                                                                                                     rdf:first 600 ;
+                                                                                                                                     rdf:rest rdf:nil
+                                                                                                                                   ]
+                                                                                                                        ]
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :Guest ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :g
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasProfile ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :g ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> :calorie_conscious
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :mealNotCompatibleWithGuestProfile ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :m ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :calorie_conscious
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "This rule infers that a Meal is not compatible with a Guest's food type preference if one of its Ingredients is incompatible with that preference." ;

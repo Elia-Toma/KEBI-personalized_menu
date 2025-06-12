@@ -1,4 +1,14 @@
-# If an ingredient is allergenic to a certain Allergen, then the Meal containing it is NOT compatible with that profile.
+# Rule Name: InferMealIncompatibilityWithGuestProfile
+# Comment: This rule infers that a Meal is not compatible with a Guest's food type preference if one of its Ingredients is incompatible with that preference.
 
-Meal(?m) ^ hasIngredient(?m, ?i) ^ hasAllergen(?i, ?all)
-  -> MealNotCompatibleWithAllergen(?m, ?all)
+Meal(?meal) ^ 
+hasIngredient(?meal, ?ingredient) ^ 
+ingredientNotCompatibleWithGuestFoodTypePreference(?ingredient, ?guestPreference) 
+-> mealNotCompatibleWithGuestProfile(?meal, ?guestPreference)
+
+
+
+# Rule Name: CalorieConsciousMealExceedsLimitRule
+# Comment: This rule infers that a meal is not compatible with the "calorie conscious" guest profile when the total calories of the meal exceed 600 kcal.
+
+Meal(?m) ^ mealHasCalories(?m, ?cal) ^ swrlb:greaterThan(?cal, 600) ^ Guest(?g) ^ hasProfile(?g, calorie_conscious) -> mealNotCompatibleWithGuestProfile(?m, calorie_conscious)

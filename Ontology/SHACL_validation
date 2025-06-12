@@ -1,57 +1,61 @@
-@prefix sh:  <http://www.w3.org/ns/shacl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix :    <http://example.org/menu#> .
+@prefix : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-# ——————————————————————————————
+
+# Shape for Guest
+:GuestShape a sh:NodeShape ;
+    sh:targetClass :Guest ;
+    sh:property [
+        sh:path :hasProfile ;
+        sh:class :GuestProfile ;
+    ] .
+
+
+# Shape for GuestProfile
+:GuestProfileShape a sh:NodeShape ;
+    sh:targetClass :GuestProfile .
+
+
+# Shape for GuestCaloriesPreference
+:GuestCaloriesPreferenceShape a sh:NodeShape ;
+    sh:targetClass :GuestCaloriesPreference .
+
+
+# Shape for GuestFoodTypePreference
+:GuestFoodTypePreferenceShape a sh:NodeShape ;
+    sh:targetClass :GuestFoodTypePreference .
+
+
 # Shape for Ingredient
-#   • must have category (non-empty string)
-#   • must have calories
-#   • may have zero or more hasAllergen
-:IngredientShape
-  a sh:NodeShape ;
-  sh:targetClass :Ingredient ;
+:IngredientShape a sh:NodeShape ;
+    sh:targetClass :Ingredient ;
+    sh:property [
+        sh:path :ingredientHasCalories ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path :IngredientNotCompatibleWithFoodTypePreference ;
+        sh:class :GuestFoodTypePreference ;
+    ] .
 
-  sh:property [
-    sh:path :category ;
-    sh:datatype xsd:string ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-  ] ;
 
-  sh:property [
-    sh:path :calories ;
-    sh:datatype xsd:integer ;
-    sh:minInclusive 0 ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-  ] ;
-
-  # allergens (object prop)
-  sh:property [
-    sh:path :hasAllergen ;
-    sh:class :Allergen ;         
-    sh:minCount 0 ;
-  ] .
-
-# ——————————————————————————————
 # Shape for Meal
-#   • must have at least one hasIngredient
-#   • must have totalCalories
-:MealShape
-  a sh:NodeShape ;
-  sh:targetClass :Meal ;
-
-  # at least one ingredient
-  sh:property [
-    sh:path :hasIngredient ;  
-    sh:class :Ingredient ;
-    sh:minCount 1 ;
-  ] ;
-
-  sh:property [
-    sh:path :totalCalories ;
-    sh:datatype xsd:integer ;
-    sh:minInclusive 0 ;
-    sh:minCount 1 ;
-    sh:maxCount 1 ;
-  ] .
+:MealShape a sh:NodeShape ;
+    sh:targetClass :Meal ;
+    sh:property [
+        sh:path :mealHasCalories ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path :hasIngredient ;
+        sh:class :Ingredient ;
+        sh:minCount 1 ;
+    ] .

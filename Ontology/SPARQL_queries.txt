@@ -1,35 +1,40 @@
 # Retrieve Ingredients and Calories
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT ?ingredient ?calories 
 WHERE {
     ?ingredient rdf:type :Ingredient ;
-        :calories ?calories .
+                :ingredientHasCalories ?calories .
 }
 
 # Retrieve the Total Calories of a Meal
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?meal ?totalCalories 
+SELECT ?meal (SUM(?calories) AS ?totalCalories)
 WHERE {
     ?meal rdf:type :Meal ;
-        :totalCalories ?totalCalories .
+          :hasIngredient ?ingredient .
+    ?ingredient :ingredientHasCalories ?calories .
 }
+GROUP BY ?meal
 
 # Retrieve Calorie-Conscious Meals
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?meal ?totalCalories WHERE {
+SELECT ?meal (SUM(?calories) AS ?totalCalories)
+WHERE {
     ?meal rdf:type :Meal ;
-        :totalCalories ?totalCalories .
-  FILTER (?totalCalories <= 600)
+          :hasIngredient ?ingredient .
+    ?ingredient :ingredientHasCalories ?calories .
 }
+GROUP BY ?meal
+HAVING (SUM(?calories) <= 600)
 
 # Retrieve Vegetarian Meals
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT DISTINCT ?meal WHERE {
@@ -37,95 +42,77 @@ SELECT DISTINCT ?meal WHERE {
   
   FILTER NOT EXISTS {
     ?meal :hasIngredient ?ingredient .
-    ?ingredient :category ?category .
-    FILTER (?category = :meat || ?category = :seafood)
+    ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian .
   }
 }
-
 
 # Retrieve Lactose Free Meals
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT DISTINCT ?meal WHERE {
-  ?meal rdf:type :Meal ;
+  ?meal rdf:type :Meal .
+  
   FILTER NOT EXISTS {
     ?meal :hasIngredient ?ingredient .
-    ?ingredient :hasAllergen :lactose .
+    ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant .
   }
 }
 
-
 # Retrieve Gluten Free Meals
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT DISTINCT ?meal WHERE {
-  ?meal rdf:type :Meal ;
+  ?meal rdf:type :Meal .
+  
   FILTER NOT EXISTS {
     ?meal :hasIngredient ?ingredient .
-    ?ingredient :hasAllergen :gluten_allergen .
+    ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :gluten_intolerant .
   }
 }
 
 # Retrieve Calorie-Conscious and Vegetarian Meals
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT DISTINCT ?meal ?totalCalories WHERE {
-  ?meal rdf:type :Meal ;
-        :totalCalories ?totalCalories .
+SELECT ?meal (SUM(?calories) AS ?totalCalories)
+WHERE {
+    ?meal rdf:type :Meal ;
+          :hasIngredient ?ingredient .
+    ?ingredient :ingredientHasCalories ?calories .
   
-  FILTER (?totalCalories <= 400)
-
-  FILTER NOT EXISTS {
-    ?meal :hasIngredient ?ingredient .
-    ?ingredient :category ?category .
-    FILTER (?category = :meat || ?category = :seafood)
-  }
+    FILTER NOT EXISTS {
+        ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian .
+    }
 }
+GROUP BY ?meal
+HAVING (SUM(?calories) <= 600)
 
 # Retrieve Gluten and Lactose Free Meals
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 SELECT DISTINCT ?meal WHERE {
-  ?meal rdf:type :Meal ;
+  ?meal rdf:type :Meal .
 
   FILTER NOT EXISTS {
     ?meal :hasIngredient ?ingredient1 .
-    ?ingredient1 :hasAllergen :gluten_allergen .
+    ?ingredient1 :ingredientNotCompatibleWithGuestFoodTypePreference :gluten_intolerant .
   }
 
   FILTER NOT EXISTS {
     ?meal :hasIngredient ?ingredient2 .
-    ?ingredient2 :hasAllergen :lactose .
+    ?ingredient2 :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant .
   }
 }
 
 # What ingredients does each dish have?
-PREFIX : <http://example.org/menu#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT ?meal ?ingredient WHERE {
-  ?meal rdf:type :Meal .
-  ?meal :hasIngredient ?ingredient .
-}
-
-# Which dishes contain at least one “dairy” ingredient?
-PREFIX : <http://example.org/menu#>
-
-SELECT DISTINCT ?meal 
+SELECT ?meal ?ingredient
 WHERE {
-    ?meal :hasIngredient ?ingredient .
-    ?ingredient :category ?category .
-    FILTER (?category = "dairy")
-}
-
-PREFIX : <http://example.org/menu#>
-
-SELECT DISTINCT ?meal ?all 
-WHERE {
-    ?meal :hasIngredient ?ingredient .
-    ?ingredient :hasAllergen ?all .
+  ?meal rdf:type :Meal ;
+        :hasIngredient ?ingredient .
 }
