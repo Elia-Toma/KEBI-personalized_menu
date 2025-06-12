@@ -1,23 +1,42 @@
-% --- Ingredients: ingredient(Name, Category, Calories)
-ingredient(tomato, vegetable, 20).
-ingredient(basil, vegetable, 5).
-ingredient(mozzarella, dairy, 150).
-ingredient(parmesan, dairy, 120).
-ingredient(olive_oil, fat, 120).
-ingredient(spaghetti, gluten, 350).
-ingredient(penne, gluten, 360).
-ingredient(rice, grain, 330).
-ingredient(chicken, meat, 200).
-ingredient(beef, meat, 250).
-ingredient(egg, protein, 70).
-ingredient(bacon, meat, 300).
-ingredient(mushrooms, vegetable, 25).
-ingredient(cream, dairy, 250).
-ingredient(zucchini, vegetable, 15).
-ingredient(clams, seafood, 180).
-ingredient(shrimp, seafood, 150).
+% Ingredients: ingredient(Name)
+ingredient(tomato).
+ingredient(basil).
+ingredient(mozzarella).
+ingredient(parmesan).
+ingredient(olive_oil).
+ingredient(spaghetti).
+ingredient(penne).
+ingredient(rice).
+ingredient(chicken).
+ingredient(beef).
+ingredient(egg).
+ingredient(bacon).
+ingredient(mushrooms).
+ingredient(cream).
+ingredient(zucchini).
+ingredient(clams).
+ingredient(shrimp).
 
-% --- Meals: meal(Name, [List of Ingredients])
+% Calories
+calories(tomato, 20).
+calories(basil, 5).
+calories(mozzarella, 150).
+calories(parmesan, 120).
+calories(olive_oil, 120).
+calories(spaghetti, 350).
+calories(penne, 360).
+calories(rice, 330).
+calories(chicken, 200).
+calories(beef, 250).
+calories(egg, 70).
+calories(bacon, 300).
+calories(mushrooms, 25).
+calories(cream, 250).
+calories(zucchini, 15).
+calories(clams, 180).
+calories(shrimp, 150).
+
+% Meals: meal(Name, [List of Ingredients])
 meal(pizza_margherita,     [mozzarella, tomato, basil, olive_oil]).
 meal(carbonara,            [spaghetti, egg, cream, parmesan, bacon]).
 meal(vegetarian_pasta,     [penne, tomato, zucchini, mushrooms, olive_oil]).
@@ -27,77 +46,91 @@ meal(mixed_salad,          [tomato, zucchini, olive_oil, basil]).
 meal(spaghetti_alle_vongole,[spaghetti, clams, olive_oil]).
 meal(shrimp_risotto,       [rice, shrimp, olive_oil, parmesan]).
 
-% --- Allergens: allergen(Ingredient, AllergenType)
-allergen(mozzarella, lactose).
-allergen(parmesan,   lactose).
-allergen(spaghetti,  gluten).
-allergen(penne,      gluten).
-allergen(chicken,    meat).
-allergen(beef,       meat).
-allergen(egg,        egg).
-allergen(bacon,      meat).
-allergen(cream,      lactose).
-allergen(clams,      seafood).
-allergen(shrimp,     seafood).
+% Calorie-conscious example threshold
+calorie_threshold(600).
 
-% --- Calorie computation: 
-% calculate_ingredients_calories(IngredientList, TotalCalories)
+% Ingredients not compatible with a vegetarian diet
+non_vegetarian(bacon).
+non_vegetarian(chicken).
+non_vegetarian(beef).
+non_vegetarian(clams).
+non_vegetarian(shrimp).
+
+% Ingredients not compatible with a lactose intolerance
+non_lactose(mozzarella).
+non_lactose(parmesan).
+non_lactose(cream).
+
+% Ingredients not compatible with a gluten intolerance
+non_gluten(spaghetti).
+non_gluten(penne).
+
+% Vegetarian meal rule
+is_vegetarian(Meal) :-
+    meal(Meal, Ingredients),
+    \+ (member(Ingredient, Ingredients), non_vegetarian(Ingredient)).
+
+% Carnivore meal rule
+is_carnivore(Meal) :- meal(Meal, _).
+
+% Gluten intolerant meal rule
+is_gluten_free(Meal) :-
+    meal(Meal, Ingredients),
+    \+ (member(Ingredient, Ingredients), non_gluten(Ingredient)).
+
+% Lactose intolerant meal rule:
+is_lactose_free(Meal) :-
+    meal(Meal, Ingredients),
+    \+ (member(Ingredient, Ingredients), non_lactose(Ingredient)).
+
+% Calorie calculation for a meal
 calculate_ingredients_calories([], 0).
 calculate_ingredients_calories([Ingredient|RestOfIngredients], TotalCalories) :-
-    ingredient(Ingredient, _, Calories), % get calories for current ingredient
+    calories(Ingredient, Calories), % get calories for current ingredient
     calculate_ingredients_calories(RestOfIngredients, RestCalories),
     TotalCalories is Calories + RestCalories.
 
-% meal_calories(Meal, Calories)
 meal_calories(Meal, TotalCalories) :-
     meal(Meal, Ingredients),
     calculate_ingredients_calories(Ingredients, TotalCalories).
 
-% --- Predicate member/2
-member(X, [X|_]).
-member(X, [_|T]) :- member(X, T).
+% Determine if a meal is calorie-conscious
+is_calorie_conscious(Meal) :-
+    meal_calories(Meal, TotalCalories),
+    calorie_threshold(Threshold),
+    TotalCalories =< Threshold.
 
-% --- Vegetarian: there must be no meat or seafood ingredients
-is_vegetarian(Meal) :-
-    meal(Meal, Ingredients),
-    \+ ( member(I, Ingredients), ingredient(I, meat, _) ),
-    \+ ( member(I, Ingredients), ingredient(I, seafood, _) ).
+% Fits: associate a profile with a meal
+fits(vegetarian, Meal) :- is_vegetarian(Meal).
+fits(carnivore, Meal) :- is_carnivore(Meal).
+fits(lactose_intolerant, Meal) :- is_lactose_free(Meal).
+fits(gluten_intolerant, Meal) :- is_gluten_free(Meal).
+fits(calorie_conscious, Meal) :- is_calorie_conscious(Meal).
 
-% --- Carnivore: for simplicity's sake, anyone who eats anything
-is_carnivore(Meal) :- meal(Meal, _).
 
-% --- Calorie conscious: calories <= Threshold
-is_calorie_conscious(Meal, Threshold) :-
-    meal_calories(Meal, Calories),
-    Calories =< Threshold.
-
-% --- Has allergen
-has_allergen(Meal, Allergy) :-
-    meal(Meal, Ingredients),
-    member(I, Ingredients),
-    allergen(I, Allergy).
-
-% --- fits: associate a profile with a meal
-fits(vegetarian, Meal)            :- is_vegetarian(Meal).
-fits(carnivore, Meal)             :- is_carnivore(Meal).
-fits(calorie_conscious(Threshold), Meal):- is_calorie_conscious(Meal, Threshold).
-fits(no_lactose, Meal)            :- \+ has_allergen(Meal, lactose).
-fits(no_gluten, Meal)             :- \+ has_allergen(Meal, gluten).
-fits(no_seafood, Meal)            :- \+ has_allergen(Meal, seafood).
-
-% --- Recommend a meal for a single profile
+% Collect meals that are compliant with all given preferences
 recommend_meal(Profile, Meal) :-
-    \+ (Profile = [_|_]),  % is not a list
+    \+ is_list(Profile),
     fits(Profile, Meal).
 
-% --- Recommend a meal for multiple profiles (list)
-recommend_meal([P|Ps], Meal) :-
-    fits(P, Meal),
-    recommend_meal(Ps, Meal).
+recommend_meal(Profiles, Meal) :-
+    is_list(Profiles),
+    all_fit(Profiles, Meal).
 
-recommend_meal([], _).  % base case
+% Helper to check all profiles fit
+all_fit([], _).
+all_fit([P|Ps], Meal) :-
+    fits(P, Meal),
+    all_fit(Ps, Meal).
 
 % --- Query examples:
-% ?- recommend_meal([vegetarian, calorie_conscious(600)], Meal).
+% ?- is_vegetarian(Meal).
+% ?- is_gluten_free(Meal).
+% ?- is_lactose_free(Meal).
+% ?- is_calorie_conscious(Meal).
+
 % ?- meal_calories(pizza_margherita, Calories).
 % ?- fits(no_gluten, spaghetti_alle_vongole).
+% ?- recommend_meal([vegetarian], Meal).
+% ?- recommend_meal([carnivore, gluten_intolerant], Meal).
+% ?- recommend_meal([lactose_intolerant, calorie_conscious], Meal).
