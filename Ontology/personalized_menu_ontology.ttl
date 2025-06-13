@@ -93,6 +93,240 @@
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#basilico
+:basilico rdf:type owl:NamedIndividual ,
+                   :Ingredient ;
+          :ingredientHasCalories 5 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#caprese
+:caprese rdf:type owl:NamedIndividual ,
+                  :Meal ;
+         :hasIngredient :basilico ,
+                        :olio_oliva ,
+                        :pomodoro ,
+                        :mozzarella ;
+         :mealHasCalories 295 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#carota
+:carota rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :ingredientHasCalories 41 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#cetriolo
+:cetriolo rdf:type owl:NamedIndividual ,
+                   :Ingredient ;
+          :ingredientHasCalories 16 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#coppa
+:coppa rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+       :ingredientHasCalories 180 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#farina
+:farina rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :ingredientNotCompatibleWithGuestFoodTypePreference :gluten_intolerant ;
+        :ingredientHasCalories 340 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#fontina
+:fontina rdf:type owl:NamedIndividual ,
+                  :Ingredient ;
+         :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant ;
+         :ingredientHasCalories 280 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#funghi
+:funghi rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :ingredientHasCalories 25 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#gamberetti
+:gamberetti rdf:type owl:NamedIndividual ,
+                     :Ingredient ;
+            :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+            :ingredientHasCalories 150 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#gorgonzola
+:gorgonzola rdf:type owl:NamedIndividual ,
+                     :Ingredient ;
+            :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant ;
+            :ingredientHasCalories 300 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#guanciale
+:guanciale rdf:type owl:NamedIndividual ,
+                    :Ingredient ;
+           :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+           :ingredientHasCalories 300 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#insalata_mista
+:insalata_mista rdf:type owl:NamedIndividual ,
+                         :Meal ;
+                :hasIngredient :carota ,
+                               :cetriolo ,
+                               :lattuga ,
+                               :olio_oliva ,
+                               :olive ,
+                               :pomodoro ;
+                :mealHasCalories 327 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#lattuga
+:lattuga rdf:type owl:NamedIndividual ,
+                  :Ingredient ;
+         :ingredientHasCalories 15 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#manzo
+:manzo rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+       :ingredientHasCalories 250 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#mortadella
+:mortadella rdf:type owl:NamedIndividual ,
+                     :Ingredient ;
+            :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+            :ingredientHasCalories 250 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#olio_oliva
+:olio_oliva rdf:type owl:NamedIndividual ,
+                     :Ingredient ;
+            :ingredientHasCalories 120 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#olive
+:olive rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :ingredientHasCalories 115 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#pasta_vegetariana
+:pasta_vegetariana rdf:type owl:NamedIndividual ,
+                            :Meal ;
+                   :hasIngredient :funghi ,
+                                  :olio_oliva ,
+                                  :pomodoro ,
+                                  :zucchine ,
+                                  :penne ;
+                   :mealHasCalories 540 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#pecorino
+:pecorino rdf:type owl:NamedIndividual ,
+                   :Ingredient ;
+          :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant ;
+          :ingredientHasCalories 120 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#pollo
+:pollo rdf:type owl:NamedIndividual ,
+                :Ingredient ;
+       :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+       :ingredientHasCalories 200 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#pollo_grigliato
+:pollo_grigliato rdf:type owl:NamedIndividual ,
+                          :Meal ;
+                 :hasIngredient :olio_oliva ,
+                                :pollo ;
+                 :mealHasCalories 320 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#pomodoro
+:pomodoro rdf:type owl:NamedIndividual ,
+                   :Ingredient ;
+          :ingredientHasCalories 20 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#prosciutto_crudo
+:prosciutto_crudo rdf:type owl:NamedIndividual ,
+                           :Ingredient ;
+                  :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+                  :ingredientHasCalories 150 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#riso
+:riso rdf:type owl:NamedIndividual ,
+               :Ingredient ;
+      :ingredientHasCalories 330 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#risotto_gamberetti
+:risotto_gamberetti rdf:type owl:NamedIndividual ,
+                             :Meal ;
+                    :hasIngredient :gamberetti ,
+                                   :olio_oliva ,
+                                   :riso ;
+                    :mealHasCalories 600 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#salame
+:salame rdf:type owl:NamedIndividual ,
+                 :Ingredient ;
+        :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+        :ingredientHasCalories 200 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#tagliata_di_manzo
+:tagliata_di_manzo rdf:type owl:NamedIndividual ,
+                            :Meal ;
+                   :hasIngredient :manzo ,
+                                  :olio_oliva ;
+                   :mealHasCalories 370 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#tagliere_formaggi
+:tagliere_formaggi rdf:type owl:NamedIndividual ,
+                            :Meal ;
+                   :hasIngredient :fontina ,
+                                  :gorgonzola ,
+                                  :pecorino ;
+                   :mealHasCalories 700 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#tagliere_salumi
+:tagliere_salumi rdf:type owl:NamedIndividual ,
+                          :Meal ;
+                 :hasIngredient :coppa ,
+                                :mortadella ,
+                                :prosciutto_crudo ,
+                                :salame ;
+                 :mealHasCalories 780 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#uova
+:uova rdf:type owl:NamedIndividual ,
+               :Ingredient ;
+      :ingredientHasCalories 70 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#vongole
+:vongole rdf:type owl:NamedIndividual ,
+                  :Ingredient ;
+         :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
+         :ingredientHasCalories 180 .
+
+
+###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu#zucchine
+:zucchine rdf:type owl:NamedIndividual ,
+                   :Ingredient ;
+          :ingredientHasCalories 15 .
+
+
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/Elia
 :Elia rdf:type owl:NamedIndividual ,
                :Guest ;
@@ -105,34 +339,6 @@
        :hasProfile :calorie_conscious .
 
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/bacon
-:bacon rdf:type owl:NamedIndividual ,
-                :Ingredient ;
-       :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
-       :ingredientHasCalories 300 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/basil
-:basil rdf:type owl:NamedIndividual ,
-                :Ingredient ;
-       :ingredientHasCalories 5 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/beef
-:beef rdf:type owl:NamedIndividual ,
-               :Ingredient ;
-      :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
-      :ingredientHasCalories 250 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/beef_steak
-:beef_steak rdf:type owl:NamedIndividual ,
-                     :Meal ;
-            :hasIngredient :beef ,
-                           :olive_oil ;
-            :mealHasCalories 370 .
-
-
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/calorie_conscious
 :calorie_conscious rdf:type owl:NamedIndividual ,
                             :GuestCaloriesPreference .
@@ -141,39 +347,11 @@
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/carbonara
 :carbonara rdf:type owl:NamedIndividual ,
                     :Meal ;
-           :hasIngredient :bacon ,
-                          :cream ,
-                          :egg ,
-                          :parmesan ,
+           :hasIngredient :guanciale ,
+                          :pecorino ,
+                          :uova ,
                           :spaghetti ;
-           :mealHasCalories 1090 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/chicken
-:chicken rdf:type owl:NamedIndividual ,
-                  :Ingredient ;
-         :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
-         :ingredientHasCalories 200 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/clams
-:clams rdf:type owl:NamedIndividual ,
-                :Ingredient ;
-       :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
-       :ingredientHasCalories 180 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/cream
-:cream rdf:type owl:NamedIndividual ,
-                :Ingredient ;
-       :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant ;
-       :ingredientHasCalories 250 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/egg
-:egg rdf:type owl:NamedIndividual ,
-              :Ingredient ;
-     :ingredientHasCalories 70 .
+           :mealHasCalories 840 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/gluten_intolerant
@@ -181,27 +359,9 @@
                             :GuestFoodTypePreference .
 
 
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/grilled_chicken
-:grilled_chicken rdf:type owl:NamedIndividual ,
-                          :Meal ;
-                 :hasIngredient :chicken ,
-                                :olive_oil ;
-                 :mealHasCalories 320 .
-
-
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/lactose_intolerant
 :lactose_intolerant rdf:type owl:NamedIndividual ,
                              :GuestFoodTypePreference .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/mixed_salad
-:mixed_salad rdf:type owl:NamedIndividual ,
-                      :Meal ;
-             :hasIngredient :basil ,
-                            :olive_oil ,
-                            :tomato ,
-                            :zucchini ;
-             :mealHasCalories 160 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/mozzarella
@@ -209,25 +369,6 @@
                      :Ingredient ;
             :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant ;
             :ingredientHasCalories 150 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/mushrooms
-:mushrooms rdf:type owl:NamedIndividual ,
-                    :Ingredient ;
-           :ingredientHasCalories 25 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/olive_oil
-:olive_oil rdf:type owl:NamedIndividual ,
-                    :Ingredient ;
-           :ingredientHasCalories 120 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/parmesan
-:parmesan rdf:type owl:NamedIndividual ,
-                   :Ingredient ;
-          :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant ;
-          :ingredientHasCalories 120 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/penne
@@ -240,34 +381,12 @@
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/pizza_margherita
 :pizza_margherita rdf:type owl:NamedIndividual ,
                            :Meal ;
-                  :hasIngredient :basil ,
-                                 :mozzarella ,
-                                 :olive_oil ,
-                                 :tomato ;
-                  :mealHasCalories 295 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/rice
-:rice rdf:type owl:NamedIndividual ,
-               :Ingredient ;
-      :ingredientHasCalories 330 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/shrimp
-:shrimp rdf:type owl:NamedIndividual ,
-                 :Ingredient ;
-        :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian ;
-        :ingredientHasCalories 150 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/shrimp_risotto
-:shrimp_risotto rdf:type owl:NamedIndividual ,
-                         :Meal ;
-                :hasIngredient :olive_oil ,
-                               :parmesan ,
-                               :rice ,
-                               :shrimp ;
-                :mealHasCalories 720 .
+                  :hasIngredient :basilico ,
+                                 :farina ,
+                                 :olio_oliva ,
+                                 :pomodoro ,
+                                 :mozzarella ;
+                  :mealHasCalories 635 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/spaghetti
@@ -280,38 +399,15 @@
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/spaghetti_alle_vongole
 :spaghetti_alle_vongole rdf:type owl:NamedIndividual ,
                                  :Meal ;
-                        :hasIngredient :clams ,
-                                       :olive_oil ,
+                        :hasIngredient :olio_oliva ,
+                                       :vongole ,
                                        :spaghetti ;
                         :mealHasCalories 650 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/tomato
-:tomato rdf:type owl:NamedIndividual ,
-                 :Ingredient ;
-        :ingredientHasCalories 20 .
 
 
 ###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/vegetarian
 :vegetarian rdf:type owl:NamedIndividual ,
                      :GuestFoodTypePreference .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/vegetarian_pasta
-:vegetarian_pasta rdf:type owl:NamedIndividual ,
-                           :Meal ;
-                  :hasIngredient :mushrooms ,
-                                 :olive_oil ,
-                                 :penne ,
-                                 :tomato ,
-                                 :zucchini ;
-                  :mealHasCalories 540 .
-
-
-###  http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/zucchini
-:zucchini rdf:type owl:NamedIndividual ,
-                   :Ingredient ;
-          :ingredientHasCalories 15 .
 
 
 #################################################################

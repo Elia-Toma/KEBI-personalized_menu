@@ -81,9 +81,10 @@ WHERE {
     ?meal rdf:type :Meal ;
           :hasIngredient ?ingredient .
     ?ingredient :ingredientHasCalories ?calories .
-  
+
     FILTER NOT EXISTS {
-        ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian .
+        ?meal :hasIngredient ?incompIngredient .
+        ?incompIngredient :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian .
     }
 }
 GROUP BY ?meal

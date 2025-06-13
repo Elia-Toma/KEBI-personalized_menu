@@ -1,69 +1,98 @@
 % Ingredients: ingredient(Name)
-ingredient(tomato).
-ingredient(basil).
+ingredient(prosciutto_crudo).
+ingredient(salame).
+ingredient(mortadella).
+ingredient(coppa).
+ingredient(gorgonzola).
+ingredient(fontina).
+ingredient(pecorino).
+ingredient(farina).
+ingredient(pomodoro).
+ingredient(basilico).
 ingredient(mozzarella).
-ingredient(parmesan).
-ingredient(olive_oil).
+ingredient(olio_oliva).
 ingredient(spaghetti).
 ingredient(penne).
-ingredient(rice).
-ingredient(chicken).
-ingredient(beef).
-ingredient(egg).
-ingredient(bacon).
-ingredient(mushrooms).
-ingredient(cream).
-ingredient(zucchini).
-ingredient(clams).
-ingredient(shrimp).
+ingredient(riso).
+ingredient(pollo).
+ingredient(manzo).
+ingredient(uova).
+ingredient(guanciale).
+ingredient(funghi).
+ingredient(zucchine).
+ingredient(vongole).
+ingredient(gamberetti).
+ingredient(lattuga).
+ingredient(cetriolo).
+ingredient(olive).
+ingredient(carota).
 
 % Calories
-calories(tomato, 20).
-calories(basil, 5).
+calories(prosciutto_crudo, 150).
+calories(salame, 200).
+calories(mortadella, 250).
+calories(coppa, 180).
+calories(gorgonzola, 300).
+calories(fontina, 280).
+calories(farina, 340).
+calories(pomodoro, 20).
+calories(basilico, 5).
 calories(mozzarella, 150).
-calories(parmesan, 120).
-calories(olive_oil, 120).
+calories(pecorino, 120).
+calories(olio_oliva, 120).
 calories(spaghetti, 350).
 calories(penne, 360).
-calories(rice, 330).
-calories(chicken, 200).
-calories(beef, 250).
-calories(egg, 70).
-calories(bacon, 300).
-calories(mushrooms, 25).
-calories(cream, 250).
-calories(zucchini, 15).
-calories(clams, 180).
-calories(shrimp, 150).
+calories(riso, 330).
+calories(pollo, 200).
+calories(manzo, 250).
+calories(uova, 70).
+calories(guanciale, 200).
+calories(funghi, 25).
+calories(zucchine, 15).
+calories(vongole, 180).
+calories(gamberetti, 150).
+calories(lattuga, 15).
+calories(cetriolo, 16).
+calories(olive, 115).
+calories(carota, 41).
 
 % Meals: meal(Name, [List of Ingredients])
-meal(pizza_margherita,     [mozzarella, tomato, basil, olive_oil]).
-meal(carbonara,            [spaghetti, egg, cream, parmesan, bacon]).
-meal(vegetarian_pasta,     [penne, tomato, zucchini, mushrooms, olive_oil]).
-meal(grilled_chicken,      [chicken, olive_oil]).
-meal(beef_steak,           [beef, olive_oil]).
-meal(mixed_salad,          [tomato, zucchini, olive_oil, basil]).
-meal(spaghetti_alle_vongole,[spaghetti, clams, olive_oil]).
-meal(shrimp_risotto,       [rice, shrimp, olive_oil, parmesan]).
+meal(caprese, [mozzarella, pomodoro, basilico, olio_oliva]).
+meal(tagliere_salumi, [prosciutto_crudo, salame, mortadella, coppa]).
+meal(tagliere_formaggi, [gorgonzola, fontina, pecorino]).
+meal(pizza_margherita, [farina, mozzarella, pomodoro, basilico, olio_oliva]).
+meal(carbonara, [spaghetti, uova, pecorino, guanciale]).
+meal(pasta_vegetariana, [penne, pomodoro, zucchine, funghi, olio_oliva]).
+meal(pollo_grigliato, [pollo, olio_oliva]).
+meal(tagliata_di_manzo, [manzo, olio_oliva]).
+meal(insalata_mista, [lattuga, pomodoro, cetriolo, carota, olive, olio_oliva]).
+meal(spaghetti_alle_vongole, [spaghetti, vongole, olio_oliva]).
+meal(risotto_gamberetti, [riso, gamberetti, olio_oliva]).
 
 % Calorie-conscious example threshold
 calorie_threshold(600).
 
 % Ingredients not compatible with a vegetarian diet
-non_vegetarian(bacon).
-non_vegetarian(chicken).
-non_vegetarian(beef).
-non_vegetarian(clams).
-non_vegetarian(shrimp).
+non_vegetarian(prosciutto_crudo).
+non_vegetarian(salame).
+non_vegetarian(mortadella).
+non_vegetarian(coppa).
+non_vegetarian(guanciale).
+non_vegetarian(pollo).
+non_vegetarian(manzo).
+non_vegetarian(vongole).
+non_vegetarian(gamberetti).
 
 % Ingredients not compatible with a lactose intolerance
+non_lactose(gorgonzola).
+non_lactose(fontina).
+non_lactose(pecorino).
 non_lactose(mozzarella).
-non_lactose(parmesan).
-non_lactose(cream).
 
 % Ingredients not compatible with a gluten intolerance
 non_gluten(spaghetti).
 non_gluten(penne).
+non_gluten(farina).
 
 % Vegetarian meal rule
 is_vegetarian(Meal) :-
@@ -107,7 +136,6 @@ fits(lactose_intolerant, Meal) :- is_lactose_free(Meal).
 fits(gluten_intolerant, Meal) :- is_gluten_free(Meal).
 fits(calorie_conscious, Meal) :- is_calorie_conscious(Meal).
 
-
 % Collect meals that are compliant with all given preferences
 recommend_meal(Profile, Meal) :-
     \+ is_list(Profile),
@@ -119,9 +147,9 @@ recommend_meal(Profiles, Meal) :-
 
 % Helper to check all profiles fit
 all_fit([], _).
-all_fit([P|Ps], Meal) :-
-    fits(P, Meal),
-    all_fit(Ps, Meal).
+all_fit([Preference|OtherPreferences], Meal) :-
+    fits(Preference, Meal),
+    all_fit(OtherPreferences, Meal).
 
 % --- Query examples:
 % ?- is_vegetarian(Meal).
@@ -130,7 +158,7 @@ all_fit([P|Ps], Meal) :-
 % ?- is_calorie_conscious(Meal).
 
 % ?- meal_calories(pizza_margherita, Calories).
-% ?- fits(no_gluten, spaghetti_alle_vongole).
+% ?- fits(gluten_intolerant, spaghetti_alle_vongole).
 % ?- recommend_meal([vegetarian], Meal).
 % ?- recommend_meal([carnivore, gluten_intolerant], Meal).
 % ?- recommend_meal([lactose_intolerant, calorie_conscious], Meal).
