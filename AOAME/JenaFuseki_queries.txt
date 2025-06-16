@@ -1,0 +1,52 @@
+#Query that checks for all the preferences of the guest
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX mod: <http://fhnw.ch/modelingEnvironment/ModelOntology#>
+PREFIX lo: <http://fhnw.ch/modelingEnvironment/LanguageOntology#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://www.semanticweb.org/user/ontologies/2025/5/personalized_menu/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?meal
+WHERE {
+  {
+    SELECT ?isVegetarian ?isLactoseIntolerant ?isGlutenIntolerant ?isCalorieConscious WHERE {
+      mod:Suggestmeals_5c744850-c594-439a-836e-a9ce5466f550 lo:vegetarian ?vegetarianObj .
+      mod:Suggestmeals_5c744850-c594-439a-836e-a9ce5466f550 lo:lactose_intolerant ?lactoseObj .
+      mod:Suggestmeals_5c744850-c594-439a-836e-a9ce5466f550 lo:gluten_intolerant ?glutenObj .
+      mod:Suggestmeals_5c744850-c594-439a-836e-a9ce5466f550 lo:calorie_conscious ?calorieObj .
+      BIND(xsd:boolean(?vegetarianObj) AS ?isVegetarian)
+      BIND(xsd:boolean(?lactoseObj) AS ?isLactoseIntolerant)
+      BIND(xsd:boolean(?glutenObj) AS ?isGlutenIntolerant)
+      BIND(xsd:boolean(?calorieObj) AS ?isCalorieConscious)
+    }
+  }
+
+  ?meal rdf:type :Meal .
+
+  FILTER(
+    (?isVegetarian = false || NOT EXISTS {
+        ?meal :hasIngredient ?ingredient .
+      ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :vegetarian .
+    }) &&
+    (?isLactoseIntolerant = false || NOT EXISTS {
+        ?meal :hasIngredient ?ingredient .
+      ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :lactose_intolerant .
+    }) &&
+    (?isGlutenIntolerant = false || NOT EXISTS {
+        ?meal :hasIngredient ?ingredient .
+      ?ingredient :ingredientNotCompatibleWithGuestFoodTypePreference :gluten_intolerant .
+    })
+  )
+
+  FILTER(
+    (?isCalorieConscious = false || EXISTS {
+      SELECT ?meal (SUM(?calories) AS ?totalCalories)
+      WHERE {
+        ?meal :hasIngredient ?ingredient .
+    ?ingredient :ingredientHasCalories ?calories .
+      }
+      GROUP BY ?meal
+      HAVING (SUM(?calories) <= 600)
+    })
+  )
+}
