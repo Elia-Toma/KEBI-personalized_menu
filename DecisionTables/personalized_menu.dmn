@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn" xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:drools="http://www.drools.org/kie/dmn/1.1" xmlns:openapi="https://openapis.org/omg/extension/1.0" xmlns:boxedext="https://www.trisotech.com/spec/DMN/20191111/EXT/" xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0" xmlns:rss="http://purl.org/rss/2.0/" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"                 xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:ns1="http://www.omg.org/spec/DMN/20180521/DMNDI/"  xmlns:ns2="http://www.omg.org/spec/DMN/20180521/FEEL/"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns="http://www.trisotech.com/definitions/_d8a06dd0-4949-4d75-b9d8-bd2adc985979" id="_d8a06dd0-4949-4d75-b9d8-bd2adc985979" name="personalized_menu" namespace="http://www.trisotech.com/definitions/_d8a06dd0-4949-4d75-b9d8-bd2adc985979" exporter="Decision Modeler" exporterVersion="9.9.1" xml:lang="en" triso:translationLanguages="" triso:logoChoice="Default">
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:dmndi="https://www.omg.org/spec/DMN/20230324/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:trisodmn="http://www.trisotech.com/2016/triso/dmn" xmlns:feel="https://www.omg.org/spec/DMN/20240513/FEEL/" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:drools="http://www.drools.org/kie/dmn/1.1" xmlns:openapi="https://openapis.org/omg/extension/1.0" xmlns:boxedext="https://www.trisotech.com/spec/DMN/20191111/EXT/" xmlns:i18n="http://www.omg.org/spec/BPMN/non-normative/extensions/i18n/1.0" xmlns:rss="http://purl.org/rss/2.0/" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"                 xmlns:sdmn="https://www.omg.org/spec/SDMN/"  xmlns:ns1="http://www.omg.org/spec/DMN/20180521/DMNDI/"  xmlns:ns2="http://www.omg.org/spec/DMN/20180521/FEEL/"  xmlns:xsd="http://www.w3.org/2001/XMLSchema"  xmlns="http://www.trisotech.com/definitions/_d8a06dd0-4949-4d75-b9d8-bd2adc985979" id="_d8a06dd0-4949-4d75-b9d8-bd2adc985979" name="personalized_menu" namespace="http://www.trisotech.com/definitions/_d8a06dd0-4949-4d75-b9d8-bd2adc985979" exporter="Decision Modeler" exporterVersion="9.9.2" xml:lang="en" triso:translationLanguages="" triso:logoChoice="Default">
     <semantic:extensionElements/>
     <semantic:itemDefinition name="TGuestProfile" label="TGuestProfile" isCollection="false">
         <semantic:itemComponent id="_a88626c1-d283-4e36-b7ad-1b035cc9db14" name="dietType" isCollection="false">
@@ -15,10 +15,19 @@
             <semantic:typeRef>boolean</semantic:typeRef>
         </semantic:itemComponent>
     </semantic:itemDefinition>
+    <semantic:itemDefinition name="ingredientsType" label="ingredientsType">
+        <semantic:itemComponent id="_4a20d273-c347-422a-bf72-615818d00336" name="name">
+            <semantic:typeRef>string</semantic:typeRef>
+        </semantic:itemComponent>
+        <semantic:itemComponent id="_043a092c-2400-4a31-bef9-c876daa0b240" name="calories">
+            <semantic:typeRef>number</semantic:typeRef>
+        </semantic:itemComponent>
+    </semantic:itemDefinition>
     <semantic:decisionService id="_d8a06dd0-4949-4d75-b9d8-bd2adc985979_DS" name="Whole Model Decision Service" triso:dynamicDecisionService="true" triso:wholeModelService="true">
         <semantic:variable name="Whole Model Decision Service" id="_d8a06dd0-4949-4d75-b9d8-bd2adc985979_DS_VAR" typeRef="Any"/>
         <semantic:outputDecision href="#_328d6c3b-ad08-46ba-85c3-a6152bc82a7f"/>
         <semantic:encapsulatedDecision href="#_a9e06075-8412-4188-8b23-7bc675dd9a94"/>
+        <semantic:encapsulatedDecision href="#_27436689-fef4-479c-9874-2d511cd674c4"/>
         <semantic:inputData href="#_37e56f20-1052-421a-b8f5-484dcb529d96"/>
         <semantic:inputData href="#_2c0324b9-ea19-4e88-8339-8d1c7d60d488"/>
         <semantic:inputData href="#_028c551f-e189-45d9-86f7-82c1d683ebce"/>
@@ -28,6 +37,7 @@
         <semantic:variable name="Diagram Page 1" id="_89dc1a23-d7be-4966-bf35-9a378af2e3da_DS_VAR" typeRef="Any"/>
         <semantic:outputDecision href="#_328d6c3b-ad08-46ba-85c3-a6152bc82a7f"/>
         <semantic:encapsulatedDecision href="#_a9e06075-8412-4188-8b23-7bc675dd9a94"/>
+        <semantic:encapsulatedDecision href="#_27436689-fef4-479c-9874-2d511cd674c4"/>
         <semantic:inputData href="#_37e56f20-1052-421a-b8f5-484dcb529d96"/>
         <semantic:inputData href="#_2c0324b9-ea19-4e88-8339-8d1c7d60d488"/>
         <semantic:inputData href="#_028c551f-e189-45d9-86f7-82c1d683ebce"/>
@@ -37,7 +47,7 @@
         <semantic:variable name="isVegetarian" id="_9e3d8f4d-402b-41f5-889d-5d938487b88c" typeRef="boolean"/>
     </semantic:inputData>
     <semantic:decision id="_a9e06075-8412-4188-8b23-7bc675dd9a94" name="decide on ingredients" triso:readOnly="false" triso:useOutputTypeAsAnswer="false">
-        <semantic:variable name="decide on ingredients" id="_edef8999-f029-4575-ba69-bf2bbf6aa086" typeRef="Any"/>
+        <semantic:variable name="decide on ingredients" id="_edef8999-f029-4575-ba69-bf2bbf6aa086" typeRef="string"/>
         <semantic:informationRequirement id="_7f7336bf-3b5d-486c-b09a-ee933256608b" triso:readOnly="false">
             <semantic:requiredInput href="#_37e56f20-1052-421a-b8f5-484dcb529d96"/>
         </semantic:informationRequirement>
@@ -47,7 +57,7 @@
         <semantic:informationRequirement id="_5afa7659-fbb9-4f65-8303-9227e29f3a2b" triso:readOnly="false">
             <semantic:requiredInput href="#_028c551f-e189-45d9-86f7-82c1d683ebce"/>
         </semantic:informationRequirement>
-        <semantic:decisionTable triso:descriptionVisible="false" id="_f495c789-b61d-4e33-b180-78b37563d392" hitPolicy="COLLECT" outputLabel="decide on ingredients" typeRef="Any" triso:expressionId="_a90f05d6-540f-4c29-b8f5-c11f4a4e89e4">
+        <semantic:decisionTable triso:descriptionVisible="false" id="_f495c789-b61d-4e33-b180-78b37563d392" hitPolicy="COLLECT" outputLabel="decide on ingredients" typeRef="string" triso:expressionId="_a90f05d6-540f-4c29-b8f5-c11f4a4e89e4">
             <semantic:input id="_14e81fa9-153f-4eec-816f-99b66fd52158" label="isVegetarian">
                 <semantic:inputExpression typeRef="boolean">
                     <semantic:text>isVegetarian</semantic:text>
@@ -63,8 +73,7 @@
                     <semantic:text>isGlutenIntolerant</semantic:text>
                 </semantic:inputExpression>
             </semantic:input>
-            <semantic:output id="_5bf85876-a6af-409e-91f2-1254d91bd1ed" triso:allowNull="true" name="ingredient" typeRef="string"/>
-            <semantic:output id="_ef3a9100-36d4-4441-bdc6-eada99d2d022" triso:allowNull="true" name="calories" typeRef="number"/>
+            <semantic:output id="_5bf85876-a6af-409e-91f2-1254d91bd1ed" triso:allowNull="true"/>
             <semantic:annotation name="Description"/>
             <semantic:rule id="_f4c07f18-28ba-4853-89aa-e518b27678b9">
                 <semantic:inputEntry id="_8e89efaa-6b61-4fbd-a632-27c69aec39ca">
@@ -78,9 +87,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_cb751c74-a5fa-471c-9424-2d3ef4e503f7">
                     <semantic:text>"prosciutto_crudo"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_2e3c37a0-bfbe-4143-b7de-aa86ec3f11e4">
-                    <semantic:text>150</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -99,9 +105,6 @@
                 <semantic:outputEntry id="_c2b5dba9-ecdf-4b78-b09a-9707fdb4dce2">
                     <semantic:text>"salame"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_0a19747a-4d03-419d-80db-fd48985ac4b2">
-                    <semantic:text>200</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -118,9 +121,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_a31dcaa7-f602-48ee-abb0-394e3d570300">
                     <semantic:text>"mortadella"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_d78ea912-4ba4-4667-95a0-d03c396addad">
-                    <semantic:text>250</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -139,9 +139,6 @@
                 <semantic:outputEntry id="_63331b3c-cc61-4955-ad0b-278a4560b89a">
                     <semantic:text>"coppa"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_ad1750d7-8146-475d-8609-9fa4b5dc45ac">
-                    <semantic:text>180</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -158,9 +155,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_257fb3ac-6c09-4274-a140-132b99dded2a">
                     <semantic:text>"gorgonzola"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_61741f54-1883-48b5-8a68-dae32963ce29">
-                    <semantic:text>300</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -179,9 +173,6 @@
                 <semantic:outputEntry id="_bce601f3-1e66-4765-97e1-e64a8965cf3b">
                     <semantic:text>"fontina"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_f95e9aeb-b58f-4a48-8871-24c575b63383">
-                    <semantic:text>280</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -198,9 +189,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_462a09a8-4a8b-44fb-932e-315fdf8ec701">
                     <semantic:text>"pecorino"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_feb11a45-c822-4a6d-80e5-6b70424bb96b">
-                    <semantic:text>120</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -219,9 +207,6 @@
                 <semantic:outputEntry id="_277e114b-7013-44fd-8620-aa3e04604006">
                     <semantic:text>"farina"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_7f3033b8-b146-4f91-bf39-b5e12171ab93">
-                    <semantic:text>340</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -238,9 +223,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_ab5e2497-71bd-45f8-83b4-7be3a16778ac">
                     <semantic:text>"pomodoro"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_b905ea4f-2da7-4318-a96c-b49c48ee6d86">
-                    <semantic:text>20</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -259,9 +241,6 @@
                 <semantic:outputEntry id="_08a939a6-b632-4ea4-8fd8-3c986488918d">
                     <semantic:text>"basilico"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_cca4c87b-f877-4e85-93c8-618a12d648f9">
-                    <semantic:text>5</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -278,9 +257,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_693d28e4-86dd-4798-8a6f-c43285f501f5">
                     <semantic:text>"mozzarella"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_52a38486-f26c-4df9-8311-515884de62fc">
-                    <semantic:text>150</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -299,9 +275,6 @@
                 <semantic:outputEntry id="_2b544926-b669-4582-a95d-ed94c3b3b756">
                     <semantic:text>"olio_oliva"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_3bbebb9d-a336-4e15-9277-3e8c1ec4b42e">
-                    <semantic:text>120</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -318,9 +291,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_71aee42e-2a70-4d2b-ab24-ea554e30b912">
                     <semantic:text>"spaghetti"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_7e135459-8f30-413f-b2da-ce3a729ac39e">
-                    <semantic:text>350</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -339,9 +309,6 @@
                 <semantic:outputEntry id="_763f874b-e2e8-437b-a85f-07c97e774a4f">
                     <semantic:text>"penne"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_86d1a476-d2b8-4453-9fcb-47a590c7c07b">
-                    <semantic:text>360</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -358,9 +325,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_1f0d5b2e-b6ee-4879-9016-4ab29e5214d4">
                     <semantic:text>"riso"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_1863f2b9-1202-441e-9fc0-b4a217de8743">
-                    <semantic:text>330</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -379,9 +343,6 @@
                 <semantic:outputEntry id="_a916f675-1d3f-4207-9efa-a2a6bb2857f5">
                     <semantic:text>"pollo"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_263e72db-ea46-473a-83fd-404e5b515c9e">
-                    <semantic:text>200</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -398,9 +359,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_ccde0603-a4b1-4a0c-868b-ba9fc3991907">
                     <semantic:text>"manzo"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_0416c17c-f73c-4032-b333-c30730588407">
-                    <semantic:text>250</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -419,9 +377,6 @@
                 <semantic:outputEntry id="_55e9fac1-5701-4abb-82cb-4af4800a63da">
                     <semantic:text>"uova"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_3ba464da-a289-4c9c-947f-8fd08632e77f">
-                    <semantic:text>70</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -438,9 +393,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_ffbca86d-af49-4333-994d-cfbcf2bc67e0">
                     <semantic:text>"guanciale"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_f61702e8-7d2a-4bd6-ad33-6a84a027a566">
-                    <semantic:text>300</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -459,9 +411,6 @@
                 <semantic:outputEntry id="_65852552-b999-44ab-bb4f-dc1affa5756d">
                     <semantic:text>"funghi"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_018b97e1-f285-4ebd-8037-f8aa3b5b12fd">
-                    <semantic:text>25</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -478,9 +427,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_d736f5cd-838c-45fa-baea-d51efc3a6a2a">
                     <semantic:text>"zucchine"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_331ea68f-3247-4250-b8a9-4bb7a0bbdd11">
-                    <semantic:text>15</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -499,9 +445,6 @@
                 <semantic:outputEntry id="_23299deb-7614-4674-b6dd-f02f777e060b">
                     <semantic:text>"vongole"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_e2a464e5-e324-4a89-88c1-da5340411442">
-                    <semantic:text>180</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -518,9 +461,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_e05fa937-026b-4e15-b8bb-6dfe5bcac7fb">
                     <semantic:text>"gamberetti"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_872a6847-451d-49df-b6dc-1df15d33e6e5">
-                    <semantic:text>150</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -539,9 +479,6 @@
                 <semantic:outputEntry id="_49500a72-6145-4f89-9a44-e82b2c06a3fa">
                     <semantic:text>"lattuga"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_ccbf7504-462c-4572-bb17-e0ba8aa92fa2">
-                    <semantic:text>15</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -558,9 +495,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_4c31b867-0056-47aa-9864-cef91d84416e">
                     <semantic:text>"cetriolo"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_c13f6f93-1509-4ea1-a598-3431a6c8e272">
-                    <semantic:text>16</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -579,9 +513,6 @@
                 <semantic:outputEntry id="_f7a88a91-6980-4c60-90f0-2bbe1b359b36">
                     <semantic:text>"olive"</semantic:text>
                 </semantic:outputEntry>
-                <semantic:outputEntry id="_52b8335a-adff-4a4e-bc35-978b4b1de03b">
-                    <semantic:text>115</semantic:text>
-                </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
                 </semantic:annotationEntry>
@@ -598,9 +529,6 @@
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_1cc595a2-7227-4a06-9cb3-8691f02dff3b">
                     <semantic:text>"carota"</semantic:text>
-                </semantic:outputEntry>
-                <semantic:outputEntry id="_c455134a-1d78-441e-aaba-fd25b7b58d45">
-                    <semantic:text>41</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -622,15 +550,23 @@
         <semantic:informationRequirement id="_c341830a-db9c-4027-962d-4ef0f3fe6281" triso:readOnly="false">
             <semantic:requiredInput href="#_ce361c30-8334-4e58-a1d6-0ba9c075e9bf"/>
         </semantic:informationRequirement>
+        <semantic:informationRequirement id="_c297fc4a-f2b9-4c8e-a8fb-2a36dec59f32" triso:readOnly="false">
+            <semantic:requiredDecision href="#_27436689-fef4-479c-9874-2d511cd674c4"/>
+        </semantic:informationRequirement>
         <semantic:decisionTable triso:descriptionVisible="false" id="_48d3ec48-708e-41ae-a997-0f84391099eb" hitPolicy="COLLECT" outputLabel="decide on meals" typeRef="string" triso:expressionId="_851a88c4-2332-426f-b263-ae6600c19328">
-            <semantic:input id="_7d5f02c3-5571-4c26-98df-e4e2b166ee4b" triso:allowNull="true" label="decide on ingredients.ingredient">
+            <semantic:input id="_7d5f02c3-5571-4c26-98df-e4e2b166ee4b" triso:allowNull="true" label="decide on ingredients">
                 <semantic:inputExpression typeRef="string">
-                    <semantic:text>decide on ingredients.ingredient</semantic:text>
+                    <semantic:text>decide on ingredients</semantic:text>
                 </semantic:inputExpression>
             </semantic:input>
-            <semantic:input id="_cfce97c5-d3c2-420d-9eb8-7128f1a06dda" label="maxCalories">
-                <semantic:inputExpression typeRef="number">
-                    <semantic:text>maxCalories</semantic:text>
+            <semantic:input id="_cfce97c5-d3c2-420d-9eb8-7128f1a06dda" label="isCalorieConscious">
+                <semantic:inputExpression typeRef="boolean">
+                    <semantic:text>isCalorieConscious</semantic:text>
+                </semantic:inputExpression>
+            </semantic:input>
+            <semantic:input id="_853f87bd-fa3f-4f83-b13e-ce444a4d1208" triso:allowNull="true" label="ingredients">
+                <semantic:inputExpression typeRef="ingredientsType">
+                    <semantic:text>ingredients</semantic:text>
                 </semantic:inputExpression>
             </semantic:input>
             <semantic:output id="_a22e24a9-13b8-4253-991b-7ead923de304" triso:allowNull="true"/>
@@ -640,9 +576,30 @@
                     <semantic:text>list contains(?, "mozzarella") and list contains(?, "pomodoro") and list contains(?, "basilico") and list contains(?, "olio_oliva")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_cb8a7081-3974-4a65-997f-ebc5c9beccbc">
-                    <semantic:text>&gt;= 295</semantic:text>
+                    <semantic:text>true
+</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_0f95865f-b8cf-4d37-860e-cd87a01eccb9">
+                    <semantic:text>(?[name="mozzarella"].calories[1] + ?[name="pomodoro"].calories[1] + ?[name="basilico"].calories[1] + ?[name="olio_oliva"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_e3b10fbf-c713-45a7-818f-e190e080bb2c">
+                    <semantic:text>"caprese"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_c1b798bf-9390-476f-8e6c-a8dc514152eb">
+                <semantic:inputEntry id="_cdca6973-95d4-475d-b5e2-0598e02caf13">
+                    <semantic:text>list contains(?, "mozzarella") and list contains(?, "pomodoro") and list contains(?, "basilico") and list contains(?, "olio_oliva")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_9b019255-3ae3-4595-a805-a342b3e2f80d">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_6baf2b20-febb-4aaf-8409-97c00a97bbef">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_802ae2fb-c6eb-41d2-8ad0-2b376d36878e">
                     <semantic:text>"caprese"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -654,10 +611,30 @@
                     <semantic:text>list contains(?, "prosciutto_crudo") and list contains(?, "salame") and list contains(?, "mortadella") and list contains(?, "coppa")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_4d6a47e7-540c-4bdf-b68b-ddab5ada7beb">
-                    <semantic:text>&gt;= 780</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_29a7d879-96e1-4925-9c4e-d40c1a89f61f">
+                    <semantic:text>(?[name="prosciutto_crudo"].calories[1] + ?[name="salame"].calories[1] + ?[name="mortadella"].calories[1] + ?[name="coppa"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_5877b787-4f30-4d40-bba4-93fff169ab66">
-                    <semantic:text>"tagliere_salumi"</semantic:text>
+                    <semantic:text>"tagliere salumi"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_b9f56e2c-f4e2-420c-ab4e-f7f40a73a9a8">
+                <semantic:inputEntry id="_41ad3d28-f109-4442-8f47-4831fd5bb3c0">
+                    <semantic:text>list contains(?, "prosciutto_crudo") and list contains(?, "salame") and list contains(?, "mortadella") and list contains(?, "coppa")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_f0692b85-04ea-4f6c-9742-30a34ae0b5a0">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_c957cdaa-8156-48f5-afaa-168ac0f02d45">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_fd968b0c-84e7-4cf8-a4c8-32081e1239c6">
+                    <semantic:text>"tagliere salumi"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -668,10 +645,30 @@
                     <semantic:text>list contains(?, "gorgonzola") and list contains(?, "fontina") and list contains(?, "pecorino")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_863bfb4e-66f9-4a0a-90ae-52140e0802b2">
-                    <semantic:text>&gt;= 700</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d5805b86-87e6-4784-82c0-9bb955d6793f">
+                    <semantic:text>(?[name="gorgonzola"].calories[1] + ?[name="fontina"].calories[1] + ?[name="pecorino"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_7ef889ca-b3e9-4e1c-8ed0-905e8bd4cdd5">
-                    <semantic:text>"tagliere_formaggi"</semantic:text>
+                    <semantic:text>"tagliere formaggi"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5915be3f-0e62-4ec6-a1b5-da514884aa77">
+                <semantic:inputEntry id="_f6f97c28-572e-4d47-a58a-488221ac7fbb">
+                    <semantic:text>list contains(?, "gorgonzola") and list contains(?, "fontina") and list contains(?, "pecorino")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_6b755598-5cc4-4aba-bb75-05985616a587">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_1b542e89-d579-4912-8755-68b5e2323712">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_9eae9fe2-8a7e-4f00-ad83-f3220a010906">
+                    <semantic:text>"tagliere formaggi"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
                     <semantic:text/>
@@ -682,9 +679,29 @@
                     <semantic:text>list contains(?, "farina") and list contains(?, "pomodoro") and list contains(?, "mozzarella") and list contains(?, "basilico") and list contains(?, "olio_oliva")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_c0548c31-1182-494a-8479-4a4424533b3d">
-                    <semantic:text>&gt;= 635</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_d08d2637-1b59-4ee6-aee1-c7fb32c8e6b2">
+                    <semantic:text>(?[name="farina"].calories[1] + ?[name="pomodoro"].calories[1] + ?[name="mozzarella"].calories[1] + ?[name="basilico"].calories[1] + ?[name="olio_oliva"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_cff53afd-22e1-4f9a-bb91-d90f33c04ffa">
+                    <semantic:text>"pizza margherita"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_5af28181-4a73-4968-ad7a-5c912c4f9222">
+                <semantic:inputEntry id="_0830b788-8536-4216-85f4-2ca82439b5e2">
+                    <semantic:text>list contains(?, "farina") and list contains(?, "pomodoro") and list contains(?, "mozzarella") and list contains(?, "basilico") and list contains(?, "olio_oliva")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_138e06ce-e580-429f-9cdc-394835bedf2f">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_a95e7c65-b0a6-4393-8f89-b9109fa96085">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ca623867-61d4-4bea-94e3-719499ce8a42">
                     <semantic:text>"pizza margherita"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -696,9 +713,29 @@
                     <semantic:text>list contains(?, "spaghetti") and list contains(?, "guanciale") and list contains(?, "pecorino") and list contains(?, "uova")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_3909c718-904f-4ced-96dd-2f4b5de8caff">
-                    <semantic:text>&gt;= 840</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_eff4443c-9091-4e08-89a6-2742ed04ebff">
+                    <semantic:text>(?[name="spaghetti"].calories[1] + ?[name="guanciale"].calories[1] + ?[name="pecorino"].calories[1] + ?[name="uova"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_e6030443-a2ef-45db-a744-332de7077d6c">
+                    <semantic:text>"carbonara"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_41137a1e-377d-4d9b-93f3-c6aa1612b4eb">
+                <semantic:inputEntry id="_5155c11f-f087-406e-8a32-85c370e91ae7">
+                    <semantic:text>list contains(?, "spaghetti") and list contains(?, "guanciale") and list contains(?, "pecorino") and list contains(?, "uova")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_e5fe54bf-4d0b-4cc8-a5d6-0dfdda49310c">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_451b2a14-38a1-4bc6-b5f6-4cc6f09c4287">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_33fa310c-8734-45d3-94b8-c09aa6ca2540">
                     <semantic:text>"carbonara"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -710,9 +747,29 @@
                     <semantic:text>list contains(?, "penne") and list contains(?, "pomodoro") and list contains(?, "zucchine") and list contains(?, "funghi") and list contains(?, "olio_oliva")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_d0368bf9-5e8d-4fac-a9bd-e292548266d0">
-                    <semantic:text>&gt;= 540</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5a8c9861-4e02-4db7-9cfa-0ea857ebddcd">
+                    <semantic:text>(?[name="penne"].calories[1] + ?[name="pomodoro"].calories[1] + ?[name="zucchine"].calories[1] + ?[name="funghi"].calories[1] + ?[name="olio_oliva"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_a6af9c44-480a-423b-80b0-62f408c91042">
+                    <semantic:text>"pasta vegetariana"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_c216670b-3401-4fda-9a9c-6ee5a4784408">
+                <semantic:inputEntry id="_0e8daa73-d58d-40bb-b318-c270052c78cc">
+                    <semantic:text>list contains(?, "penne") and list contains(?, "pomodoro") and list contains(?, "zucchine") and list contains(?, "funghi") and list contains(?, "olio_oliva")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_361dc55e-d440-4d2c-a769-a5d952d02d85">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_6d86b3fc-818f-40af-9f57-abbd2136edfa">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_160b71a1-b7ad-4646-92a7-b08b6bf7a9c6">
                     <semantic:text>"pasta vegetariana"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -724,9 +781,29 @@
                     <semantic:text>list contains(?, "pollo") and list contains(?, "olio_oliva")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_fb7167f1-873a-4315-8356-cfb9d7ad5063">
-                    <semantic:text>&gt;= 320</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_7062b751-0d72-486b-8b6b-456394bb2882">
+                    <semantic:text>(?[name="pollo"].calories[1] + ?[name="olio_oliva"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_f3132a63-73e7-4c07-b715-690ab08b64ff">
+                    <semantic:text>"pollo grigliato"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_a7f77ee3-007d-47af-8ea5-26cb113110be">
+                <semantic:inputEntry id="_000692a7-122d-43e6-9651-eff67ca49e10">
+                    <semantic:text>list contains(?, "pollo") and list contains(?, "olio_oliva")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_9f99b2c5-9cd4-433f-822f-8f0d776f964a">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_737584d5-eeae-4d67-9daf-3aade5e05801">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_8e9bebda-0dd4-416a-b08e-05e21099e5e5">
                     <semantic:text>"pollo grigliato"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -738,9 +815,29 @@
                     <semantic:text>list contains(?, "manzo") and list contains(?, "olio_oliva")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_b6ac3bce-58fa-402d-b8eb-b08ca9f5c63b">
-                    <semantic:text>&gt;= 370</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_bf51a85f-946c-4076-ba07-f9cc4d6de08e">
+                    <semantic:text>(?[name="manzo"].calories[1] + ?[name="olio_oliva"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_7f2af9fc-193f-4ae4-aa81-ceb9a4310b59">
+                    <semantic:text>"tagliata di manzo"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_ec1cc13d-24fd-4612-bf09-0951038d0b69">
+                <semantic:inputEntry id="_8d95cf81-05d8-4a2d-900b-4916041537b6">
+                    <semantic:text>list contains(?, "manzo") and list contains(?, "olio_oliva")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_27c4998f-622e-40e1-9910-8cf66f3d8094">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_1f19a509-a9f1-4389-b9c3-c56ea3cebb85">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_1c283795-2be2-4d1b-8f46-5a092b0d61cb">
                     <semantic:text>"tagliata di manzo"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -752,9 +849,29 @@
                     <semantic:text>list contains(?, "pomodoro") and list contains(?, "cetriolo") and list contains(?, "olio_oliva") and list contains(?, "lattuga") and list contains(?, "carota") and list contains(?, "olive")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_59471a11-9a11-46e3-9637-0b62bb0ec5b4">
-                    <semantic:text>&gt;= 327</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_2b870288-9c5c-4871-9220-0a19afe97501">
+                    <semantic:text>(?[name="cetriolo"].calories[1] + ?[name="pomodoro"].calories[1] + ?[name="lattuga"].calories[1] + ?[name="carota"].calories[1] + ?[name="olio_oliva"].calories[1] + ?[name="olive"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_bc099fb9-b05d-4551-9941-2c3a1fa23d7e">
+                    <semantic:text>"insalata mista"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_9a10d39d-1b5c-4e7f-9e50-85c6802de7a8">
+                <semantic:inputEntry id="_ff422126-e2d7-4939-a169-a655c85908d6">
+                    <semantic:text>list contains(?, "pomodoro") and list contains(?, "cetriolo") and list contains(?, "olio_oliva") and list contains(?, "lattuga") and list contains(?, "carota") and list contains(?, "olive")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_2bea6687-0487-4600-90de-1b17697a0396">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_83f46d32-e21f-4be5-8f09-afee22fc4a32">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_a7eccf02-b04c-487c-99e2-c3758f7313a1">
                     <semantic:text>"insalata mista"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -766,9 +883,29 @@
                     <semantic:text>list contains(?, "spaghetti") and list contains(?, "vongole") and list contains(?, "olio_oliva")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_c52fd12a-0d90-4ce6-9086-79a86c47a27d">
-                    <semantic:text>&gt;= 650</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_256ac741-bcfd-45be-a804-2d117a76f1ba">
+                    <semantic:text>(?[name="spaghetti"].calories[1] + ?[name="vongole"].calories[1] + ?[name="olio_oliva"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_5cfc537a-6f55-47b9-bf0c-33094a931cc2">
+                    <semantic:text>"spaghetti alle vongole"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
+            <semantic:rule id="_6891d084-82e4-4ce4-a3c5-d47b679a00f2">
+                <semantic:inputEntry id="_13fad12d-8d2a-4acc-adad-5e3af3e769f7">
+                    <semantic:text>list contains(?, "spaghetti") and list contains(?, "vongole") and list contains(?, "olio_oliva")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_052c7ee4-537b-4f96-b1cc-1873c39c9bc0">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_620123d4-a8d9-43e4-b7d9-c562e9a8b6ae">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_1663a95d-1305-4a33-9bf3-986bfdd38af7">
                     <semantic:text>"spaghetti alle vongole"</semantic:text>
                 </semantic:outputEntry>
                 <semantic:annotationEntry>
@@ -780,7 +917,10 @@
                     <semantic:text>list contains(?, "riso") and list contains(?, "gamberetti") and list contains(?, "olio_oliva")</semantic:text>
                 </semantic:inputEntry>
                 <semantic:inputEntry id="_c2dece6b-4297-48a1-8928-7116087c65ed">
-                    <semantic:text>&gt;= 600</semantic:text>
+                    <semantic:text>true</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_01163879-05cd-449b-af33-39a8e3188f14">
+                    <semantic:text>(?[name="riso"].calories[1] + ?[name="gamberetti"].calories[1] + ?[name="olio_oliva"].calories[1]) &lt;= 600</semantic:text>
                 </semantic:inputEntry>
                 <semantic:outputEntry id="_aa85071a-57c3-4286-b33a-a44d7e3152df">
                     <semantic:text>"risotto gamberetti"</semantic:text>
@@ -789,21 +929,62 @@
                     <semantic:text/>
                 </semantic:annotationEntry>
             </semantic:rule>
+            <semantic:rule id="_8fec09c2-42ff-4fe7-890f-7de0671542af">
+                <semantic:inputEntry id="_000a6bdf-dffd-4d5d-945d-3c2902970428">
+                    <semantic:text>list contains(?, "riso") and list contains(?, "gamberetti") and list contains(?, "olio_oliva")</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_fc51c632-ea01-428f-8257-ef60a8e2bfc9">
+                    <semantic:text>false</semantic:text>
+                </semantic:inputEntry>
+                <semantic:inputEntry id="_5a47beb4-70b7-437d-a03b-77412f3d2b84">
+                    <semantic:text>-</semantic:text>
+                </semantic:inputEntry>
+                <semantic:outputEntry id="_ea8a114d-ecd5-4f56-981a-1b764eb9e2af">
+                    <semantic:text>"risotto gamberetti"</semantic:text>
+                </semantic:outputEntry>
+                <semantic:annotationEntry>
+                    <semantic:text/>
+                </semantic:annotationEntry>
+            </semantic:rule>
         </semantic:decisionTable>
     </semantic:decision>
-    <semantic:inputData id="_ce361c30-8334-4e58-a1d6-0ba9c075e9bf" name="maxCalories" triso:readOnly="false">
-        <semantic:variable name="maxCalories" id="_652e6c43-a954-45ef-9a2b-c8d18a18a071" typeRef="number"/>
+    <semantic:inputData id="_ce361c30-8334-4e58-a1d6-0ba9c075e9bf" name="isCalorieConscious" triso:readOnly="false">
+        <semantic:variable name="isCalorieConscious" id="_652e6c43-a954-45ef-9a2b-c8d18a18a071" typeRef="boolean"/>
     </semantic:inputData>
-    <semantic:knowledgeSource id="_6a3ddf82-e3f9-4b7d-9e1c-38d85785c84d" name="ingredients" triso:readOnly="false">
-        <semantic:authorityRequirement id="_1c40df73-cf0f-4794-8f1f-abb3dccd8b89" triso:readOnly="false">
-            <semantic:requiredDecision href="#_a9e06075-8412-4188-8b23-7bc675dd9a94"/>
-        </semantic:authorityRequirement>
-    </semantic:knowledgeSource>
-    <semantic:knowledgeSource id="_8107aefc-65bc-4786-bc38-b9199ce1bf4a" name="meals" triso:readOnly="false">
-        <semantic:authorityRequirement id="_d22c5d0f-e82e-48c4-bf99-36a4ff4ada3b" triso:readOnly="false">
-            <semantic:requiredDecision href="#_328d6c3b-ad08-46ba-85c3-a6152bc82a7f"/>
-        </semantic:authorityRequirement>
-    </semantic:knowledgeSource>
+    <semantic:decision id="_27436689-fef4-479c-9874-2d511cd674c4" name="ingredients" triso:readOnly="false" triso:useOutputTypeAsAnswer="false">
+        <semantic:variable name="ingredients" id="_29cc789c-8692-488f-9fd8-40c46b557f35" typeRef="ingredientsType"/>
+        <semantic:literalExpression id="_19e923e1-a000-4ccf-b805-d1b1f8246943" triso:descriptionVisible="false" typeRef="ingredientsType" triso:expressionId="_5f14db50-45de-45ec-8744-0343e8c119a8">
+            <semantic:text>[
+  {"name": "prosciutto_crudo", "calories": 150},
+  {"name": "salame", "calories": 200},
+  {"name": "mortadella", "calories": 250},
+  {"name": "coppa", "calories": 180},
+  {"name": "gorgonzola", "calories": 300},
+  {"name": "fontina", "calories": 280},
+  {"name": "farina", "calories": 340},
+  {"name": "pomodoro", "calories": 20},
+  {"name": "basilico", "calories": 5},
+  {"name": "mozzarella", "calories": 150},
+  {"name": "pecorino", "calories": 120},
+  {"name": "olio_oliva", "calories": 120},
+  {"name": "spaghetti", "calories": 350},
+  {"name": "penne", "calories": 360},
+  {"name": "riso", "calories": 330},
+  {"name": "pollo", "calories": 200},
+  {"name": "manzo", "calories": 250},
+  {"name": "uova", "calories": 70},
+  {"name": "guanciale", "calories": 200},
+  {"name": "funghi", "calories": 25},
+  {"name": "zucchine", "calories": 15},
+  {"name": "vongole", "calories": 180},
+  {"name": "gamberetti", "calories": 150},
+  {"name": "lattuga", "calories": 15},
+  {"name": "cetriolo", "calories": 16},
+  {"name": "olive", "calories": 115},
+  {"name": "carota", "calories": 41}
+]</semantic:text>
+        </semantic:literalExpression>
+    </semantic:decision>
     <ns1:DMNDI>
         <ns1:DMNDiagram id="_89dc1a23-d7be-4966-bf35-9a378af2e3da" triso:modelElementRef="_c8789533-aee5-4eff-b2b2-eae6264a67ea" name="Page 1">
             <di:extension/>
@@ -832,12 +1013,8 @@
                 <dc:Bounds x="632.2588291168213" y="123.99999618530273" width="135.48234176635742" height="60.00000762939453"/>
                 <ns1:DMNLabel sharedStyle="LS_d8a06dd0-4949-4d75-b9d8-bd2adc985979_0" trisodmn:defaultBounds="true"/>
             </ns1:DMNShape>
-            <ns1:DMNShape id="_3a1f5838-33d7-4581-bfd3-f9fa916c637e" dmnElementRef="_6a3ddf82-e3f9-4b7d-9e1c-38d85785c84d">
-                <dc:Bounds x="506.7411708831787" y="407.0213203430176" width="100" height="69.95735931396484"/>
-                <ns1:DMNLabel sharedStyle="LS_d8a06dd0-4949-4d75-b9d8-bd2adc985979_0" trisodmn:defaultBounds="true"/>
-            </ns1:DMNShape>
-            <ns1:DMNShape id="_3b86c745-c26f-4991-a319-eb9f1ab2ab8e" dmnElementRef="_8107aefc-65bc-4786-bc38-b9199ce1bf4a">
-                <dc:Bounds x="839.5" y="317.0213203430176" width="100" height="69.95735931396484"/>
+            <ns1:DMNShape id="_35cc59d6-96a9-46c7-9b8f-70cb58f29c9e" dmnElementRef="_27436689-fef4-479c-9874-2d511cd674c4">
+                <dc:Bounds x="610" y="472" width="180" height="80"/>
                 <ns1:DMNLabel sharedStyle="LS_d8a06dd0-4949-4d75-b9d8-bd2adc985979_0" trisodmn:defaultBounds="true"/>
             </ns1:DMNShape>
             <ns1:DMNEdge id="_05309d92-f5fa-443b-9ea1-1fdb8ac60dcf" dmnElementRef="_7f7336bf-3b5d-486c-b09a-ee933256608b">
@@ -865,14 +1042,9 @@
                 <di:waypoint x="700" y="322"/>
                 <ns1:DMNLabel sharedStyle="LS_d8a06dd0-4949-4d75-b9d8-bd2adc985979_0"/>
             </ns1:DMNEdge>
-            <ns1:DMNEdge id="_fbfde1b8-80a9-446e-adeb-0c16f06a9527" dmnElementRef="_1c40df73-cf0f-4794-8f1f-abb3dccd8b89">
-                <di:waypoint x="464" y="382"/>
-                <di:waypoint x="506.7411708831787" y="441.42132034301756"/>
-                <ns1:DMNLabel sharedStyle="LS_d8a06dd0-4949-4d75-b9d8-bd2adc985979_0"/>
-            </ns1:DMNEdge>
-            <ns1:DMNEdge id="_cc492df9-d413-4947-8cff-451d47bb2bf3" dmnElementRef="_d22c5d0f-e82e-48c4-bf99-36a4ff4ada3b">
-                <di:waypoint x="776.5" y="352"/>
-                <di:waypoint x="839.5" y="352"/>
+            <ns1:DMNEdge id="_27e53e59-a2d8-4311-b50c-8fc6abcfa642" dmnElementRef="_c297fc4a-f2b9-4c8e-a8fb-2a36dec59f32">
+                <di:waypoint x="700" y="472"/>
+                <di:waypoint x="700" y="382"/>
                 <ns1:DMNLabel sharedStyle="LS_d8a06dd0-4949-4d75-b9d8-bd2adc985979_0"/>
             </ns1:DMNEdge>
         </ns1:DMNDiagram>
